@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>RnB Digitals - Premium Print, Branding & Digital Solutions | Port Harcourt</title>
+  <meta name="description"
+    content="Port Harcourt's leading design, industrial printing, custom apparel embroidery, and corporate branding agency." />
+  <!-- Tailwind CSS CDN with forms & typography -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <!-- Google Fonts Inter & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind Configuration matching Stitch Forest Gold Professional -->
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#002610",
+            "primary-container": "#053e1f",
+            "surface-deep": "#043119",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#75aa81",
+            "primary-fixed": "#b8f0c3",
+            "primary-fixed-dim": "#9cd3a8",
+            "secondary": "#755b00",
+            "secondary-container": "#fdcc27",
+            "secondary-fixed": "#ffe08e",
+            "secondary-fixed-dim": "#f1c017",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#6f5700",
+            "surface": "#f8f9fa",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f4f5",
+            "surface-container": "#edeeef",
+            "surface-container-high": "#e7e8e9",
+            "on-surface": "#191c1d",
+            "on-surface-variant": "#414941",
+            "outline": "#717971",
+            "outline-variant": "#c0c9bf",
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Inter", "sans-serif"],
+          },
+          spacing: {
+            "margin-mobile": "16px",
+            "margin-desktop": "28px",
+            "container-max": "1680px",
+          },
+          boxShadow: {
+            "ambient": "0 10px 30px rgba(0,0,0,0.06)",
+            "ambient-hover": "0 20px 40px rgba(0,0,0,0.12)",
+            "gold-glow": "0 8px 25px rgba(253,204,39,0.35)",
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .glass-panel {
+      background: rgba(5, 62, 31, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-badge {
+      background: rgba(253, 204, 39, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(253, 204, 39, 0.3);
+    }
+
+    /* Smooth slide transition styles */
+    .slide-item {
+      transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-surface text-on-surface font-sans min-h-screen flex flex-col selection:bg-secondary-container selection:text-on-secondary-container">
+
+  <!-- TOP BAR -->
+  <div
+    class="bg-surface-deep text-on-primary/80 text-xs py-2 px-4 sm:px-6 md:px-8 lg:px-10 border-b border-primary-container/40 hidden sm:block w-full">
+    <div class="w-full flex justify-between items-center">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[15px] text-secondary-container">location_on</span>
+          177 Ada George by Pepperoni Junction, Port Harcourt, Nigeria
+        </span>
+        <span class="flex items-center gap-1.5 ml-6">
+          <span class="material-symbols-outlined text-[15px] text-secondary-container">schedule</span>
+          Mon - Sat: 8:00 AM - 6:00 PM
+        </span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="tel:+2348164171414" class="flex items-center gap-1 hover:text-secondary-container transition-colors">
+          <span class="material-symbols-outlined text-[15px] text-secondary-container">call</span>
+          +234 816 417 1414
+        </a>
+        <span class="text-primary-container">|</span>
+        <a href="https://wa.me/2348164171414" target="_blank"
+          class="text-secondary-container font-semibold hover:underline">
+          WhatsApp Direct
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER NAVBAR -->
+  <header class="bg-primary sticky top-0 w-full z-50 shadow-md border-none">
+    <div
+      class="flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-3.5 md:py-4 w-full">
+      <a href="#hero" class="flex items-center gap-2.5 group">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md group-hover:scale-105 transition-transform duration-300">
+          <span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">stars</span>
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-xl md:text-2xl font-extrabold text-secondary-container tracking-tight leading-none font-display">RnB
+            Digitals</span>
+          <span class="text-[10px] tracking-wider text-primary-fixed uppercase font-semibold mt-0.5">Premium Print
+            Solutions</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-7">
+        <a href="#hero"
+          class="text-secondary-container font-bold text-sm border-b-2 border-secondary-container pb-0.5 px-1">Home</a>
+        <a href="#services"
+          class="text-on-primary/85 hover:text-on-primary font-medium text-sm hover:bg-primary-container/40 duration-200 px-2 py-1 rounded transition-colors">Services</a>
+        <a href="#portfolio"
+          class="text-on-primary/85 hover:text-on-primary font-medium text-sm hover:bg-primary-container/40 duration-200 px-2 py-1 rounded transition-colors">Portfolio</a>
+        <a href="#store"
+          class="text-on-primary/85 hover:text-on-primary font-medium text-sm hover:bg-primary-container/40 duration-200 px-2 py-1 rounded transition-colors">Store</a>
+        <a href="#calculator"
+          class="text-on-primary/85 hover:text-on-primary font-medium text-sm hover:bg-primary-container/40 duration-200 px-2 py-1 rounded transition-colors">Estimator</a>
+        <a href="#about"
+          class="text-on-primary/85 hover:text-on-primary font-medium text-sm hover:bg-primary-container/40 duration-200 px-2 py-1 rounded transition-colors">About</a>
+        <a href="#contact"
+          class="text-on-primary/85 hover:text-on-primary font-medium text-sm hover:bg-primary-container/40 duration-200 px-2 py-1 rounded transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#calculator"
+          class="bg-secondary-container text-on-secondary-container font-extrabold text-xs md:text-sm py-2.5 px-5 rounded-lg hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow">
+          Get Instant Quote
+        </a>
+        <button id="mobileMenuToggle" class="md:hidden text-on-primary p-2 hover:bg-primary-container rounded-lg">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu"
+      class="hidden md:hidden bg-surface-deep border-t border-primary-container px-margin-mobile py-6 flex flex-col gap-3">
+      <a href="#hero"
+        class="text-secondary-container font-bold text-base py-2 border-b border-primary-container/40">Home</a>
+      <a href="#services"
+        class="text-on-primary/90 font-medium text-base py-2 border-b border-primary-container/40">Services</a>
+      <a href="#portfolio"
+        class="text-on-primary/90 font-medium text-base py-2 border-b border-primary-container/40">Portfolio</a>
+      <a href="#store"
+        class="text-on-primary/90 font-medium text-base py-2 border-b border-primary-container/40">Product Catalog</a>
+      <a href="#calculator"
+        class="text-on-primary/90 font-medium text-base py-2 border-b border-primary-container/40">Price Estimator</a>
+      <a href="#about" class="text-on-primary/90 font-medium text-base py-2 border-b border-primary-container/40">About
+        Us</a>
+      <a href="#contact" class="text-on-primary/90 font-medium text-base py-2">Contact</a>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- HERO SECTION WITH AUTOMATED CAROUSEL (CRUCIAL STITCH REDESIGN) -->
+    <section id="hero"
+      class="relative bg-primary-container pt-10 pb-28 md:pt-16 md:pb-40 overflow-hidden rounded-b-[2.5rem] md:rounded-b-[4.5rem] shadow-xl">
+      <div
+        class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+
+        <!-- Left Hero Text -->
+        <div class="flex flex-col items-start gap-6 max-w-2xl lg:max-w-3xl text-left">
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-badge border border-secondary-container/30 text-secondary-container text-xs font-bold tracking-wide shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+            <span>Port Harcourt's #1 Print & Branding Agency</span>
+          </div>
+
+          <h1
+            class="font-extrabold text-on-primary text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] font-display">
+            Your Brand <br />
+            Deserves <br />
+            <span class="text-secondary-container drop-shadow-sm">to Be Seen</span>
+          </h1>
+
+          <p class="text-on-primary/90 text-base sm:text-lg lg:text-xl font-normal leading-relaxed">
+            Premium print solutions for businesses that mean business. Industrial wide-format printing, custom
+            embroidered apparel, branded merchandise, and luxury packaging.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 mt-2 w-full sm:w-auto">
+            <a href="#calculator"
+              class="w-full sm:w-auto bg-secondary-container text-on-secondary-container font-extrabold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">calculate</span>
+              <span>Get Instant Quote</span>
+            </a>
+            <a href="#portfolio"
+              class="w-full sm:w-auto bg-transparent border-2 border-on-primary text-on-primary font-bold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-on-primary/10 transition-all duration-300 flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">grid_view</span>
+              <span>View Portfolio</span>
+            </a>
+          </div>
+
+          <div
+            class="pt-4 flex flex-wrap items-center gap-6 text-xs text-on-primary/80 border-t border-white/15 w-full">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary-container text-base">verified</span>
+              <span>Industrial Precision</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary-container text-base">bolt</span>
+              <span>24-48h Rush Available</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary-container text-base">local_shipping</span>
+              <span>Nationwide Courier</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero: Automatic Carousel / Slideshow Component -->
+        <div class="w-full relative">
+          <div id="heroCarousel"
+            class="relative h-[420px] sm:h-[460px] md:h-[500px] lg:h-[520px] w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border-4 border-primary/60 bg-surface-deep group"
+            aria-label="RnB Digitals Capability Showcase Slideshow">
+
+            <!-- Slide 1: Embroidery -->
+            <div class="slide-item absolute inset-0 opacity-100 scale-100 z-10" data-index="0" data-tag="Custom Apparel"
+              data-title="Custom Precision Embroidery & Apparel"
+              data-desc="Industrial multi-needle embroidery for executive uniforms, company polos & branded merchandise.">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0RwY0XEtgUyikFzxuDu0bOpCDCR_78b0JtUK_EBJW4aC7lhX7ouPq3VKx-3txxqk4ujgJPssXAwdeEoGqQLBAW6VsY0cYQfO2tnW38nzvai-kViDl-OQ7kIGfaw2vKFx4jPmkFDvS7WqIqaTcVP7eNTrV5Lrd3y4P2ZsyGZ7KcNIhMi1Cv8Jw5mcQwJVgAh9QlB8T2jiBBEn8JxG2LLwDENvdHP3zwNzt3Bqf2-8bQRcWqJhfJ0h3Zg"
+                alt="Modern embroidery studio" class="w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+            </div>
+
+            <!-- Slide 2: Wide Format Press -->
+            <div class="slide-item absolute inset-0 opacity-0 scale-105 pointer-events-none z-0" data-index="1"
+              data-tag="Large Format" data-title="Wide Format & Industrial Printing Press"
+              data-desc="Vibrant outdoor banners, event backdrops, architectural signage & precision vehicle branding.">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY5P5uPG_72pec-cab2iqt4lkIplOXelCTC97BE4RC9LhUP5dh7KGg8FNHXhVk1GKLh5SUsLcvxToHt5sTPC98HKgkw2P6o0A_xDRrfASR0ss3rY9kUJiH2hPvAtOv7YBJA11C5dGbZlOg99nRMnEUzwIizqiPUTQIfGP9RT5uTHUboVQCApKKWHWOiier2luEV6W5EmuyFnP6lU6Mz3-Cu4ebYLe1aPfPW2lHuRm9m5-jCMvdrTwRPA"
+                alt="Wide format printing press" class="w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+            </div>
+
+            <!-- Slide 3: Corporate Merchandise -->
+            <div class="slide-item absolute inset-0 opacity-0 scale-105 pointer-events-none z-0" data-index="2"
+              data-tag="Brand Merchandise" data-title="Executive Branded Corporate Merchandise"
+              data-desc="Custom branded mugs, corporate gear, luxury gift sets, and promotional items.">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8uJoRhxw8vOKwVtKKnM4nUs4CQBf67abRyGmrBwTt6PCPHREdWu0Mb39aWyRAiCngpTJU5mPPUYy83vCWDLM9aMnHT6biMjdqAMmQx7xPR1jbuzvWhje7LJBDuOCFXyN2X1ZyIL1Ax7N9taDzXsL27WY7LUW18sGI9BQ0BEVTtwiUorn3Z3vl-5k8MZ3_J-erckw8Mp9LNnsiG582g2OgddGkFBi2V5qza5spg-WCsFAAKLIFTC08Xw"
+                alt="Branded apparel and mugs" class="w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+            </div>
+
+            <!-- Slide 4: Digital Solutions -->
+            <div class="slide-item absolute inset-0 opacity-0 scale-105 pointer-events-none z-0" data-index="3"
+              data-tag="Digital Solutions" data-title="Digital Systems, UI/UX & Web Development"
+              data-desc="Modern high-converting websites, web apps, digital marketing & creative business solutions.">
+              <img
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0MZIZuh6aLIS0yHZCcW-3RIyvEI7OahJPpa91hgtWPVl4NQYyNLuoJaBxDyW-VPyGdoH4c9x6f4DBfgQhj2Ko5rfXas2mzivbjKAucGy64B4p37-D5jeubdFQNW6K52_FCDObA9AV0_IBckNk_MEHLloGlumesFf3F3ctWqYKkKDxRJGPRZMNWOhha8NZcSvyCG19utqo6hjem2l6PcnpWM6PdwjhvgfE2znrxr5eJmMK_hUHhsrj8w"
+                alt="Digital web workspace" class="w-full h-full object-cover object-center" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+            </div>
+
+            <!-- Top Overlay Badge -->
+            <div class="absolute top-4 left-4 right-4 z-20 flex justify-between items-center pointer-events-none">
+              <div
+                class="glass-panel px-3.5 py-1.5 rounded-full flex items-center gap-2 border border-secondary-container/40 shadow-lg pointer-events-auto">
+                <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+                <span id="slideTagBadge"
+                  class="text-secondary-container font-bold text-xs tracking-wider uppercase">Custom Apparel</span>
+              </div>
+
+              <div
+                class="glass-panel px-3 py-1.5 rounded-full flex items-center gap-2 text-on-primary/90 text-xs border border-white/10 shadow-lg pointer-events-auto">
+                <span id="playIcon" class="material-symbols-outlined text-sm text-primary-fixed">autoplay</span>
+                <span id="playStatus" class="hidden sm:inline text-[11px] font-medium">Auto Playing</span>
+              </div>
+            </div>
+
+            <!-- Bottom Slide Caption Card -->
+            <div
+              class="absolute bottom-0 inset-x-0 z-20 p-4 md:p-6 bg-gradient-to-t from-surface-deep via-surface-deep/95 to-transparent pt-12">
+              <div class="flex flex-col gap-2 max-w-lg">
+                <h3 id="slideTitle"
+                  class="text-lg md:text-2xl font-bold text-on-primary tracking-tight line-clamp-1 drop-shadow-md">
+                  Custom Precision Embroidery & Apparel
+                </h3>
+                <p id="slideDesc" class="text-xs md:text-sm text-on-primary/80 line-clamp-2 leading-relaxed">
+                  Industrial multi-needle embroidery for executive uniforms, company polos & branded merchandise.
+                </p>
+              </div>
+
+              <!-- Navigation Controls -->
+              <div class="flex items-center justify-between gap-4 mt-4 pt-3 border-t border-white/15">
+                <div class="flex items-center gap-2" id="slideDots">
+                  <button
+                    class="dot-btn w-8 md:w-10 h-2.5 bg-secondary-container shadow-gold-glow rounded-full cursor-pointer transition-all"
+                    data-target="0"></button>
+                  <button
+                    class="dot-btn w-2.5 h-2.5 bg-white/40 hover:bg-white/70 rounded-full cursor-pointer transition-all"
+                    data-target="1"></button>
+                  <button
+                    class="dot-btn w-2.5 h-2.5 bg-white/40 hover:bg-white/70 rounded-full cursor-pointer transition-all"
+                    data-target="2"></button>
+                  <button
+                    class="dot-btn w-2.5 h-2.5 bg-white/40 hover:bg-white/70 rounded-full cursor-pointer transition-all"
+                    data-target="3"></button>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button id="prevBtn"
+                    class="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-primary-container/80 hover:bg-secondary-container hover:text-on-secondary-container text-on-primary flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-md">
+                    <span class="material-symbols-outlined text-lg">chevron_left</span>
+                  </button>
+                  <button id="nextBtn"
+                    class="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-primary-container/80 hover:bg-secondary-container hover:text-on-secondary-container text-on-primary flex items-center justify-center border border-white/20 transition-all cursor-pointer shadow-md">
+                    <span class="material-symbols-outlined text-lg">chevron_right</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide Progress Bar -->
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-white/10 z-30 overflow-hidden">
+              <div id="slideProgressBar"
+                class="h-full bg-secondary-container transition-all duration-75 ease-linear w-0"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div
+        class="absolute -bottom-28 -right-28 w-96 h-96 bg-primary-fixed/15 rounded-full blur-3xl pointer-events-none">
+      </div>
+      <div
+        class="absolute top-12 -left-16 w-72 h-72 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none">
+      </div>
+    </section>
+
+
+    <!-- SERVICES SECTION (6 CARDS) -->
+    <section id="services" class="py-20 md:py-32 bg-surface">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="text-center mb-16 max-w-3xl mx-auto">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container text-xs font-bold uppercase tracking-wider mb-4">
+            <span class="material-symbols-outlined text-sm text-secondary-container">stars</span>
+            What We Do Best
+          </div>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-primary-container tracking-tight mb-5 font-display">
+            Comprehensive Print & Digital Solutions
+          </h2>
+          <p class="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto">
+            We bring your brand to life with high-grade industrial materials, flawless precision execution, and
+            state-of-the-art digital technology.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <div
+                  class="w-14 h-14 bg-primary-container text-secondary-container rounded-xl flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-3xl">print</span>
+                </div>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-container text-primary-container">Large
+                  Format</span>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-container mb-3">Large Format Printing</h3>
+              <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Banners, signage, rollups, and vehicle
+                wraps that demand instant attention. High-resolution UV output for maximum impact.</p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-outline-variant/20 text-xs text-on-surface/90">
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Heavy flex vinyl
+                    (440-510gsm)</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Roll-up banner stands &
+                    backdrops</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Reflective cast vinyl vehicle
+                    wraps</span></div>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+              <a href="#calculator"
+                class="text-primary-container font-semibold text-xs hover:text-secondary-container flex items-center gap-1">Calculate
+                Price <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <span
+                class="text-xs font-bold text-primary-container bg-primary-container/5 px-2.5 py-1 rounded-full">From
+                ₦12,000</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <div
+                  class="w-14 h-14 bg-primary-container text-secondary-container rounded-xl flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-3xl">apparel</span>
+                </div>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-container text-primary-container">Apparel</span>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-container mb-3">Custom Apparel & Embroidery</h3>
+              <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Premium multi-needle embroidery and screen
+                printing for corporate uniforms, custom hoodies, polos, and promotional wear.</p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-outline-variant/20 text-xs text-on-surface/90">
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>High-density 3D thread
+                    embroidery</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>220gsm combed pique cotton
+                    shirts</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Executive caps, aprons & safety
+                    jackets</span></div>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+              <a href="#calculator"
+                class="text-primary-container font-semibold text-xs hover:text-secondary-container flex items-center gap-1">Calculate
+                Price <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <span
+                class="text-xs font-bold text-primary-container bg-primary-container/5 px-2.5 py-1 rounded-full">From
+                ₦6,500 / unit</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <div
+                  class="w-14 h-14 bg-primary-container text-secondary-container rounded-xl flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-3xl">featured_seasonal_and_gifts</span>
+                </div>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-container text-primary-container">Merchandise</span>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-container mb-3">Branded Merchandise</h3>
+              <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Laser-engraved thermal tumblers, ceramic
+                mugs, metallic pens, luxury notebooks, and executive gift sets.</p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-outline-variant/20 text-xs text-on-surface/90">
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Double-wall insulated smart
+                    tumblers</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Hardcover PU leatherette
+                    journals</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>VIP onboarding gift
+                    boxes</span></div>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+              <a href="#calculator"
+                class="text-primary-container font-semibold text-xs hover:text-secondary-container flex items-center gap-1">Calculate
+                Price <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <span
+                class="text-xs font-bold text-primary-container bg-primary-container/5 px-2.5 py-1 rounded-full">From
+                ₦3,500 / unit</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <div
+                  class="w-14 h-14 bg-primary-container text-secondary-container rounded-xl flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-3xl">inventory_2</span>
+                </div>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-container text-primary-container">Packaging</span>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-container mb-3">Creative Packaging & Wrapping</h3>
+              <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Custom-printed watermark wrapping tissues,
+                luxury rope-handle shopping bags, and magnetic gift packaging.</p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-outline-variant/20 text-xs text-on-surface/90">
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Acid-free 17-22gsm tissue
+                    sheets</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Hot gold foil stamping &
+                    embossing</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Luxury matte laminated shopping
+                    bags</span></div>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+              <a href="#calculator"
+                class="text-primary-container font-semibold text-xs hover:text-secondary-container flex items-center gap-1">Calculate
+                Price <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <span
+                class="text-xs font-bold text-primary-container bg-primary-container/5 px-2.5 py-1 rounded-full">From
+                ₦28,000 / pack</span>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <div
+                  class="w-14 h-14 bg-primary-container text-secondary-container rounded-xl flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-3xl">brush</span>
+                </div>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-container text-primary-container">Branding</span>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-container mb-3">Design, Identity & Stationery</h3>
+              <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Distinctive brand identity design,
+                velvet-touch gold foil business cards, corporate brochures, and tickets.</p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-outline-variant/20 text-xs text-on-surface/90">
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>600gsm velvet luxury business
+                    cards</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Multi-page corporate company
+                    profiles</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Security-coded event tickets &
+                    flyers</span></div>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+              <a href="#calculator"
+                class="text-primary-container font-semibold text-xs hover:text-secondary-container flex items-center gap-1">Calculate
+                Price <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <span
+                class="text-xs font-bold text-primary-container bg-primary-container/5 px-2.5 py-1 rounded-full">From
+                ₦25,000</span>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5">
+            <div>
+              <div class="flex justify-between items-start mb-6">
+                <div
+                  class="w-14 h-14 bg-primary-container text-secondary-container rounded-xl flex items-center justify-center shadow-md">
+                  <span class="material-symbols-outlined text-3xl">devices</span>
+                </div>
+                <span
+                  class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-container text-primary-container">Digital</span>
+              </div>
+              <h3 class="text-2xl font-bold text-primary-container mb-3">Web Development & Digital</h3>
+              <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Lightning-fast responsive Next.js
+                websites, e-commerce stores, targeted Google/Meta ad management, and video editing.</p>
+              <div class="space-y-2 mb-6 pt-4 border-t border-outline-variant/20 text-xs text-on-surface/90">
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>Modern Next.js web
+                    application</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>E-Commerce store with Paystack
+                    payment</span></div>
+                <div class="flex items-center gap-2"><span
+                    class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span><span>High-retention commercial video
+                    editing</span></div>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+              <a href="#calculator"
+                class="text-primary-container font-semibold text-xs hover:text-secondary-container flex items-center gap-1">Calculate
+                Price <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              <span
+                class="text-xs font-bold text-primary-container bg-primary-container/5 px-2.5 py-1 rounded-full">From
+                ₦150,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTANT ESTIMATOR SECTION -->
+    <section id="calculator" class="py-20 md:py-28 bg-surface-container-lowest border-y border-outline-variant/30">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="text-center mb-12 max-w-2xl mx-auto">
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container text-xs font-bold uppercase tracking-wider mb-3">
+            <span class="material-symbols-outlined text-sm text-secondary-container">calculate</span>
+            Transparent Pricing
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-primary-container tracking-tight mb-4 font-display">
+            Instant Project Price Estimator
+          </h2>
+          <p class="text-sm md:text-base text-on-surface-variant">
+            Select your service, choose options, and get an immediate estimate for your print or branding project.
+          </p>
+        </div>
+
+        <div
+          class="max-w-5xl lg:max-w-6xl mx-auto bg-surface p-6 md:p-10 rounded-2xl md:rounded-3xl border border-outline-variant/40 shadow-ambient">
+          <!-- Step 1: Category -->
+          <div class="mb-8">
+            <label class="block text-xs font-bold uppercase tracking-wider text-primary-container mb-3">1. Select
+              Service Category</label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="calcCategories">
+              <button
+                class="calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-primary-container text-on-primary border-primary-container shadow-md"
+                data-key="banner">
+                Large Format Printing
+              </button>
+              <button
+                class="calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-surface-container-lowest text-on-surface border-outline-variant/40 hover:bg-surface-container"
+                data-key="apparel">
+                Custom Apparel & Polos
+              </button>
+              <button
+                class="calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-surface-container-lowest text-on-surface border-outline-variant/40 hover:bg-surface-container"
+                data-key="tissue">
+                Wrapping Tissue Paper
+              </button>
+              <button
+                class="calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-surface-container-lowest text-on-surface border-outline-variant/40 hover:bg-surface-container"
+                data-key="cards">
+                Luxury Business Cards
+              </button>
+              <button
+                class="calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-surface-container-lowest text-on-surface border-outline-variant/40 hover:bg-surface-container"
+                data-key="merch">
+                Branded Drinkware & Merch
+              </button>
+              <button
+                class="calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-surface-container-lowest text-on-surface border-outline-variant/40 hover:bg-surface-container"
+                data-key="web">
+                Web Development
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2 & 3: Options + Qty -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-outline-variant/30">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-primary-container mb-3">2.
+                Specifications & Finishing</label>
+              <div class="space-y-2.5" id="calcOptionsContainer">
+                <!-- Injected via script -->
+              </div>
+            </div>
+
+            <div
+              class="flex flex-col justify-between bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40">
+              <div>
+                <label id="calcQtyLabel"
+                  class="block text-xs font-bold uppercase tracking-wider text-primary-container mb-2">3. Quantity
+                  (Square Feet)</label>
+                <div class="flex items-center gap-3 mb-6">
+                  <button id="qtyMinus"
+                    class="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary-container font-bold text-lg flex items-center justify-center border border-outline-variant/30">-</button>
+                  <input id="qtyInput" type="number" value="24" min="1"
+                    class="w-24 text-center font-bold text-lg py-2 border rounded-lg bg-surface border-outline-variant/50 focus:ring-2 focus:ring-secondary-container" />
+                  <button id="qtyPlus"
+                    class="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary-container font-bold text-lg flex items-center justify-center border border-outline-variant/30">+</button>
+                </div>
+
+                <div class="bg-primary-container text-on-primary p-5 rounded-xl mb-4 shadow-md">
+                  <div class="flex justify-between items-center mb-1">
+                    <span class="text-xs text-on-primary/70 uppercase font-bold tracking-wider">Estimated
+                      Investment</span>
+                    <span
+                      class="text-[10px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold">Instant
+                      Calc</span>
+                  </div>
+                  <div id="calcEstimatedTotal" class="text-3xl font-extrabold text-secondary-container tracking-tight">
+                    ₦8,400</div>
+                  <p class="text-[11px] text-on-primary/70 mt-1">*Indicative estimate. Bulk discounts available.</p>
+                </div>
+              </div>
+
+              <a id="calcWhatsAppBtn" href="https://wa.me/2348164171414" target="_blank"
+                class="w-full bg-secondary-container text-on-secondary-container font-bold text-sm py-3 px-4 rounded-xl hover:bg-secondary-fixed transition-colors shadow-md hover:shadow-gold-glow flex items-center justify-center gap-2 text-center">
+                <span class="material-symbols-outlined text-lg">chat</span>
+                Send Estimate via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO SHOWCASE -->
+    <section id="portfolio" class="py-20 md:py-32 bg-surface">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="text-center mb-16 max-w-2xl mx-auto">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container text-xs font-bold uppercase tracking-wider mb-3">
+            <span class="material-symbols-outlined text-sm text-secondary-container">visibility</span>
+            Recent Case Studies
+          </div>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-primary-container tracking-tight font-display mb-3">
+            Proof of Craftsmanship
+          </h2>
+          <p class="text-sm md:text-base text-on-surface-variant">
+            Explore our curated projects delivered for leading companies across Port Harcourt and Nigeria.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Item 1 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient group">
+            <div class="relative h-60 w-full overflow-hidden bg-surface-deep">
+              <img src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80"
+                alt="Identity design"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-deep/90 text-secondary-container border border-secondary-container/30">Brand
+                Identity</span>
+            </div>
+            <div class="p-6">
+              <div class="text-[11px] font-semibold text-primary-container/70 uppercase tracking-wider mb-1">Client:
+                Apex Capital</div>
+              <h3 class="text-lg font-bold text-primary-container mb-2">Executive Stationery & Gold Foil Suite</h3>
+              <p class="text-xs text-on-surface-variant leading-relaxed">Embossed 600gsm gold-foil business cards and
+                presentation folders.</p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient group">
+            <div class="relative h-60 w-full overflow-hidden bg-surface-deep">
+              <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80"
+                alt="Fleet wrap"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-deep/90 text-secondary-container border border-secondary-container/30">Large
+                Format</span>
+            </div>
+            <div class="p-6">
+              <div class="text-[11px] font-semibold text-primary-container/70 uppercase tracking-wider mb-1">Client:
+                Prime Logistics</div>
+              <h3 class="text-lg font-bold text-primary-container mb-2">Commercial Fleet Vinyl Wraps</h3>
+              <p class="text-xs text-on-surface-variant leading-relaxed">UV protected gloss cast vinyl wrapping for
+                commercial van fleet.</p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient group">
+            <div class="relative h-60 w-full overflow-hidden bg-surface-deep">
+              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80"
+                alt="Packaging"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-deep/90 text-secondary-container border border-secondary-container/30">Packaging</span>
+            </div>
+            <div class="p-6">
+              <div class="text-[11px] font-semibold text-primary-container/70 uppercase tracking-wider mb-1">Client:
+                Aura Boutique</div>
+              <h3 class="text-lg font-bold text-primary-container mb-2">Watermarked Wrapping Tissue & Gift Bags</h3>
+              <p class="text-xs text-on-surface-variant leading-relaxed">Translucent 22gsm custom printed wrapping
+                tissue and hot foil bags.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORE / CATALOG SECTION -->
+    <section id="store" class="py-20 md:py-28 bg-surface-container-low">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <div
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/20 text-on-secondary-container text-xs font-bold uppercase tracking-wider mb-3">
+              <span class="material-symbols-outlined text-sm text-secondary-container">local_mall</span>
+              Product Catalog
+            </div>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-primary-container tracking-tight font-display">
+              Ready-to-Brand Essentials
+            </h2>
+            <p class="text-sm md:text-base text-on-surface-variant max-w-xl mt-2">
+              Order customized bestsellers with rapid turnaround, precision logo application, and direct delivery.
+            </p>
+          </div>
+
+          <a href="https://wa.me/2348164171414?text=Hello%20RnB%20Digitals,%20please%20send%20me%20your%20product%20catalog"
+            target="_blank"
+            class="inline-flex items-center gap-2 bg-primary-container text-on-primary hover:bg-primary text-xs md:text-sm font-bold py-2.5 px-5 rounded-xl transition-colors shadow-md">
+            <span>Request Full Catalog</span>
+            <span class="material-symbols-outlined text-sm text-secondary-container">download</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Product 1 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient flex flex-col justify-between group">
+            <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80"
+                alt="Tumbler" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container shadow-sm">Best
+                Seller</span>
+            </div>
+            <div class="p-5 flex-grow flex flex-col justify-between">
+              <div>
+                <span
+                  class="text-[11px] font-semibold uppercase tracking-wider text-primary-container/70 block mb-1">Merchandise</span>
+                <h3 class="text-base font-bold text-primary-container mb-1.5">Executive Smart Thermal Tumbler</h3>
+                <p class="text-xs text-on-surface-variant line-clamp-2 mb-4">Double-wall vacuum insulated with LED
+                  temperature readout.</p>
+              </div>
+              <div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between">
+                <span class="text-base font-bold text-primary-container">₦7,500</span>
+                <a href="https://wa.me/2348164171414" target="_blank"
+                  class="bg-secondary-container text-on-secondary-container text-xs font-bold py-2 px-3 rounded-lg">Order
+                  Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient flex flex-col justify-between group">
+            <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80"
+                alt="Tissue" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container shadow-sm">Popular</span>
+            </div>
+            <div class="p-5 flex-grow flex flex-col justify-between">
+              <div>
+                <span
+                  class="text-[11px] font-semibold uppercase tracking-wider text-primary-container/70 block mb-1">Packaging</span>
+                <h3 class="text-base font-bold text-primary-container mb-1.5">Branded Wrapping Tissue (500 sheets)</h3>
+                <p class="text-xs text-on-surface-variant line-clamp-2 mb-4">Translucent custom printed repeating brand
+                  pattern.</p>
+              </div>
+              <div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between">
+                <span class="text-base font-bold text-primary-container">₦28,000</span>
+                <a href="https://wa.me/2348164171414" target="_blank"
+                  class="bg-secondary-container text-on-secondary-container text-xs font-bold py-2 px-3 rounded-lg">Order
+                  Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient flex flex-col justify-between group">
+            <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80"
+                alt="Polo" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container shadow-sm">Apparel</span>
+            </div>
+            <div class="p-5 flex-grow flex flex-col justify-between">
+              <div>
+                <span
+                  class="text-[11px] font-semibold uppercase tracking-wider text-primary-container/70 block mb-1">Apparel</span>
+                <h3 class="text-base font-bold text-primary-container mb-1.5">Embroidered Heavy Pique Polo</h3>
+                <p class="text-xs text-on-surface-variant line-clamp-2 mb-4">220gsm combed cotton with precision thread
+                  embroidery.</p>
+              </div>
+              <div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between">
+                <span class="text-base font-bold text-primary-container">₦8,500</span>
+                <a href="https://wa.me/2348164171414" target="_blank"
+                  class="bg-secondary-container text-on-secondary-container text-xs font-bold py-2 px-3 rounded-lg">Order
+                  Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div
+            class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient flex flex-col justify-between group">
+            <div class="relative h-48 w-full overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=600&q=80"
+                alt="Cards" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              <span
+                class="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container shadow-sm">Stationery</span>
+            </div>
+            <div class="p-5 flex-grow flex flex-col justify-between">
+              <div>
+                <span
+                  class="text-[11px] font-semibold uppercase tracking-wider text-primary-container/70 block mb-1">Stationery</span>
+                <h3 class="text-base font-bold text-primary-container mb-1.5">Gold Foil Velvet Business Cards (200)</h3>
+                <p class="text-xs text-on-surface-variant line-clamp-2 mb-4">600gsm thick card with soft-touch matte
+                  lamination.</p>
+              </div>
+              <div class="pt-3 border-t border-outline-variant/20 flex items-center justify-between">
+                <span class="text-base font-bold text-primary-container">₦18,500</span>
+                <a href="https://wa.me/2348164171414" target="_blank"
+                  class="bg-secondary-container text-on-secondary-container text-xs font-bold py-2 px-3 rounded-lg">Order
+                  Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="about" class="py-20 md:py-32 bg-primary-container text-on-primary relative overflow-hidden">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+        <div class="text-center mb-16 max-w-3xl mx-auto">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-deep border border-white/10 text-secondary-container text-xs font-bold uppercase tracking-wider mb-4">
+            <span class="material-symbols-outlined text-sm text-secondary-container">diamond</span>
+            The RnB Digitals Standard
+          </div>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-on-primary tracking-tight mb-4 font-display">
+            Why Nigeria’s Top Brands Choose RnB Digitals
+          </h2>
+          <p class="text-base md:text-lg text-on-primary/80">
+            We combine creative excellence with industrial manufacturing speed at our Port Harcourt facility.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div class="bg-surface-deep/70 p-6 rounded-2xl border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-secondary-container mb-5">
+              <span class="material-symbols-outlined text-2xl">precision_manufacturing</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-primary mb-2">Modern Technology</h3>
+            <p class="text-xs sm:text-sm text-on-primary/75 leading-relaxed">Multi-needle embroidery stations, UV
+              wide-format presses, and precision die-cutting equipment.</p>
+          </div>
+
+          <div class="bg-surface-deep/70 p-6 rounded-2xl border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-secondary-container mb-5">
+              <span class="material-symbols-outlined text-2xl">verified</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-primary mb-2">Uncompromising Quality</h3>
+            <p class="text-xs sm:text-sm text-on-primary/75 leading-relaxed">Premium 440-510gsm flex, heavy 220gsm
+              cotton, acid-free tissue, and fade-resistant pigments.</p>
+          </div>
+
+          <div class="bg-surface-deep/70 p-6 rounded-2xl border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-secondary-container mb-5">
+              <span class="material-symbols-outlined text-2xl">local_shipping</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-primary mb-2">Nationwide Shipping</h3>
+            <p class="text-xs sm:text-sm text-on-primary/75 leading-relaxed">Headquartered at Ada George, Port Harcourt
+              with fast courier dispatch across all 36 Nigerian states.</p>
+          </div>
+
+          <div class="bg-surface-deep/70 p-6 rounded-2xl border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-secondary-container mb-5">
+              <span class="material-symbols-outlined text-2xl">support_agent</span>
+            </div>
+            <h3 class="text-lg font-bold text-on-primary mb-2">Direct Expert Support</h3>
+            <p class="text-xs sm:text-sm text-on-primary/75 leading-relaxed">Direct consultation with expert graphic
+              designers and print technicians to perfect your artwork.</p>
+          </div>
+        </div>
+
+        <div
+          class="bg-primary/80 border border-white/15 rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-xl">
+          <div>
+            <div class="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">500+</div>
+            <div class="text-xs md:text-sm text-on-primary/80 mt-1 uppercase font-semibold">Completed Projects</div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">99.8%</div>
+            <div class="text-xs md:text-sm text-on-primary/80 mt-1 uppercase font-semibold">Client Satisfaction</div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">24-48h</div>
+            <div class="text-xs md:text-sm text-on-primary/80 mt-1 uppercase font-semibold">Fast Turnaround</div>
+          </div>
+          <div>
+            <div class="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">36</div>
+            <div class="text-xs md:text-sm text-on-primary/80 mt-1 uppercase font-semibold">States Delivered</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 md:py-32 bg-surface">
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div class="lg:col-span-5 flex flex-col gap-6">
+            <div>
+              <div
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container text-xs font-bold uppercase tracking-wider mb-3">
+                <span class="material-symbols-outlined text-sm text-secondary-container">contact_mail</span>
+                Get In Touch
+              </div>
+              <h2 class="text-3xl md:text-5xl font-extrabold text-primary-container tracking-tight font-display mb-4">
+                Let's Build Something Exceptional
+              </h2>
+              <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                Visit our physical workshop in Port Harcourt, call our direct support line, or send a quick inquiry for
+                tailored business solutions.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div
+                class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-start gap-4">
+                <div
+                  class="w-11 h-11 rounded-xl bg-primary-container text-secondary-container flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-2xl">location_on</span>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-primary-container/70 mb-1">Port Harcourt
+                    Workshop & Office</h4>
+                  <p class="text-sm font-semibold text-on-surface">177 Ada George Road by Pepperoni Junction, Port
+                    Harcourt, Rivers State, Nigeria</p>
+                </div>
+              </div>
+
+              <div
+                class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-start gap-4">
+                <div
+                  class="w-11 h-11 rounded-xl bg-primary-container text-secondary-container flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-2xl">call</span>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-primary-container/70 mb-1">Direct Hotline &
+                    WhatsApp</h4>
+                  <a href="tel:+2348164171414"
+                    class="text-base font-bold text-primary-container hover:text-secondary-container transition-colors">+234
+                    816 417 1414</a>
+                </div>
+              </div>
+
+              <div
+                class="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-start gap-4">
+                <div
+                  class="w-11 h-11 rounded-xl bg-primary-container text-secondary-container flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-2xl">schedule</span>
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-primary-container/70 mb-1">Operating Hours
+                  </h4>
+                  <p class="text-xs font-semibold text-on-surface">Monday – Saturday: 8:00 AM – 6:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div
+            class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-10 rounded-3xl border border-outline-variant/40 shadow-ambient">
+            <h3 class="text-2xl font-bold text-primary-container mb-2 font-display">Send a Message or Project Request
+            </h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant mb-6">Fill out the details below and an RnB Digitals
+              specialist will respond promptly.</p>
+
+            <form id="contactForm" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Full Name
+                    *</label>
+                  <input type="text" required placeholder="e.g. John Okoro"
+                    class="w-full bg-surface border border-outline-variant/50 focus:ring-2 focus:ring-secondary-container rounded-xl px-4 py-3 text-sm outline-none" />
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Phone
+                    (WhatsApp) *</label>
+                  <input type="tel" required placeholder="e.g. 0816 417 1414"
+                    class="w-full bg-surface border border-outline-variant/50 focus:ring-2 focus:ring-secondary-container rounded-xl px-4 py-3 text-sm outline-none" />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Service
+                  Needed</label>
+                <select
+                  class="w-full bg-surface border border-outline-variant/50 focus:ring-2 focus:ring-secondary-container rounded-xl px-4 py-3 text-sm outline-none">
+                  <option>Large Format Printing & Banners</option>
+                  <option>Custom Apparel & Embroidery</option>
+                  <option>Branded Corporate Merchandise</option>
+                  <option>Wrapping Tissue Paper & Packaging</option>
+                  <option>Design & Stationery</option>
+                  <option>Web Development & Digital</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-primary-container uppercase tracking-wider mb-2">Message /
+                  Requirements</label>
+                <textarea rows="4" required
+                  placeholder="Describe quantities, dimensions, design status, and target date..."
+                  class="w-full bg-surface border border-outline-variant/50 focus:ring-2 focus:ring-secondary-container rounded-xl p-4 text-sm outline-none resize-none"></textarea>
+              </div>
+
+              <button type="submit"
+                class="w-full bg-secondary-container text-on-secondary-container font-extrabold text-sm py-4 px-6 rounded-xl hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow cursor-pointer">
+                Submit Project Inquiry
+              </button>
+            </form>
+            <div id="formSuccess" class="hidden bg-primary-container text-on-primary p-6 rounded-2xl text-center mt-4">
+              <span class="material-symbols-outlined text-3xl text-secondary-container block mb-2">check_circle</span>
+              <h4 class="text-xl font-bold">Thank You! Request Received</h4>
+              <p class="text-xs text-on-primary/80 mt-1">Our team will call or message your WhatsApp shortly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-surface-deep text-on-primary border-t border-outline-variant/20">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-4 sm:px-6 md:px-8 lg:px-10 py-16 w-full">
+      <div class="flex flex-col gap-4">
+        <a href="#hero" class="flex items-center gap-2.5">
+          <div
+            class="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md">
+            <span class="material-symbols-outlined text-2xl">stars</span>
+          </div>
+          <span class="text-2xl font-extrabold text-secondary-container font-display">RnB Digitals</span>
+        </a>
+        <p class="text-sm text-on-primary/80 leading-relaxed max-w-xs">
+          Premium print and branding solutions designed to elevate your brand's presence in Port Harcourt and across
+          Nigeria.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-2.5">
+        <h4 class="font-bold text-sm text-secondary-container uppercase tracking-wider mb-1">Core Services</h4>
+        <a href="#services" class="text-xs text-on-primary/70 hover:text-secondary-container">Large Format Printing</a>
+        <a href="#services" class="text-xs text-on-primary/70 hover:text-secondary-container">Custom Apparel &
+          Embroidery</a>
+        <a href="#services" class="text-xs text-on-primary/70 hover:text-secondary-container">Branded Merchandise</a>
+        <a href="#services" class="text-xs text-on-primary/70 hover:text-secondary-container">Wrapping Tissue &
+          Packaging</a>
+        <a href="#services" class="text-xs text-on-primary/70 hover:text-secondary-container">Web & Digital
+          Solutions</a>
+      </div>
+
+      <div class="flex flex-col gap-2.5">
+        <h4 class="font-bold text-sm text-secondary-container uppercase tracking-wider mb-1">Company</h4>
+        <a href="#hero" class="text-xs text-on-primary/70 hover:text-secondary-container">Home</a>
+        <a href="#portfolio" class="text-xs text-on-primary/70 hover:text-secondary-container">Portfolio</a>
+        <a href="#store" class="text-xs text-on-primary/70 hover:text-secondary-container">Product Catalog</a>
+        <a href="#calculator" class="text-xs text-on-primary/70 hover:text-secondary-container">Price Estimator</a>
+        <a href="#contact" class="text-xs text-on-primary/70 hover:text-secondary-container">Contact</a>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <h4 class="font-bold text-sm text-secondary-container uppercase tracking-wider mb-1">Contact</h4>
+        <p class="text-xs text-on-primary/80 leading-relaxed">
+          177 Ada George Road, Port Harcourt, Rivers State<br />
+          Phone: +234 816 417 1414<br />
+          Email: info@rnbdigitals.com
+        </p>
+        <a href="https://wa.me/2348164171414" target="_blank"
+          class="inline-flex items-center gap-1.5 text-xs text-secondary-container font-semibold hover:underline">
+          <span>Chat on WhatsApp</span>
+          <span class="material-symbols-outlined text-xs">open_in_new</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 px-margin-mobile md:px-margin-desktop py-6">
+      <div class="max-w-container-max mx-auto text-center text-xs text-on-primary/60">
+        © 2024-2026 RnB Digitals. All Rights Reserved. Premium Print & Digital Solutions.
+      </div>
+    </div>
+  </footer>
+
+  <!-- HERO AUTOMATED CAROUSEL & ESTIMATOR JAVASCRIPT LOGIC -->
+  <script>
+    // --- Mobile Menu Toggle ---
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuToggle && mobileMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    // --- Hero Slideshow / Carousel Automation ---
+    const slides = document.querySelectorAll('.slide-item');
+    const dots = document.querySelectorAll('.dot-btn');
+    const slideTagBadge = document.getElementById('slideTagBadge');
+    const slideTitle = document.getElementById('slideTitle');
+    const slideDesc = document.getElementById('slideDesc');
+    const progressBar = document.getElementById('slideProgressBar');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const heroCarousel = document.getElementById('heroCarousel');
+    const playIcon = document.getElementById('playIcon');
+    const playStatus = document.getElementById('playStatus');
+
+    let currentSlideIdx = 0;
+    const totalSlides = slides.length;
+    const SLIDE_DURATION = 4500;
+    let progress = 0;
+    let isPaused = false;
+    let timer = null;
+    let progressTimer = null;
+
+    function showSlide(idx) {
+      currentSlideIdx = (idx + totalSlides) % totalSlides;
+      progress = 0;
+      if (progressBar) progressBar.style.width = '0%';
+
+      slides.forEach((slide, i) => {
+        if (i === currentSlideIdx) {
+          slide.classList.remove('opacity-0', 'scale-105', 'pointer-events-none');
+          slide.classList.add('opacity-100', 'scale-100', 'z-10');
+          slide.classList.remove('z-0');
+
+          // Update tags and captions
+          if (slideTagBadge) slideTagBadge.textContent = slide.getAttribute('data-tag');
+          if (slideTitle) slideTitle.textContent = slide.getAttribute('data-title');
+          if (slideDesc) slideDesc.textContent = slide.getAttribute('data-desc');
+        } else {
+          slide.classList.add('opacity-0', 'scale-105', 'pointer-events-none');
+          slide.classList.remove('opacity-100', 'scale-100', 'z-10');
+          slide.classList.add('z-0');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === currentSlideIdx) {
+          dot.className = 'dot-btn w-8 md:w-10 h-2.5 bg-secondary-container shadow-gold-glow rounded-full cursor-pointer transition-all';
+        } else {
+          dot.className = 'dot-btn w-2.5 h-2.5 bg-white/40 hover:bg-white/70 rounded-full cursor-pointer transition-all';
+        }
+      });
+    }
+
+    function startSlideLoop() {
+      if (timer) clearInterval(timer);
+      if (progressTimer) clearInterval(progressTimer);
+
+      progressTimer = setInterval(() => {
+        if (!isPaused) {
+          progress += (50 / SLIDE_DURATION) * 100;
+          if (progressBar) progressBar.style.width = Math.min(100, progress) + '%';
+        }
+      }, 50);
+
+      timer = setInterval(() => {
+        if (!isPaused) {
+          showSlide(currentSlideIdx + 1);
+        }
+      }, SLIDE_DURATION);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => showSlide(currentSlideIdx - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => showSlide(currentSlideIdx + 1));
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => showSlide(i));
+    });
+
+    if (heroCarousel) {
+      heroCarousel.addEventListener('mouseenter', () => {
+        isPaused = true;
+        if (playIcon) playIcon.textContent = 'pause_circle';
+        if (playStatus) playStatus.textContent = 'Paused';
+      });
+      heroCarousel.addEventListener('mouseleave', () => {
+        isPaused = false;
+        if (playIcon) playIcon.textContent = 'autoplay';
+        if (playStatus) playStatus.textContent = 'Auto Playing';
+      });
+    }
+
+    startSlideLoop();
+
+    // --- Price Estimator Interactive Logic ---
+    const calcData = {
+      banner: {
+        unit: 'Square Feet',
+        base: 350,
+        min: 24,
+        options: [
+          { name: 'Standard Flex Banner (440gsm)', extra: 0, checked: true },
+          { name: 'Heavy Duty Mesh / Backlit (510gsm)', extra: 150, checked: false },
+          { name: 'With Eyelets & Reinforced Hemming', extra: 50, checked: true },
+          { name: 'Includes Rollup Stand Hardware', extra: 12000, checked: false },
+        ]
+      },
+      apparel: {
+        unit: 'Number of Shirts',
+        base: 6500,
+        min: 5,
+        options: [
+          { name: 'Single-Location Chest Embroidery', extra: 0, checked: true },
+          { name: 'Dual-Location (Chest + Sleeve)', extra: 1500, checked: false },
+          { name: 'Heavyweight 220gsm Pique Cotton', extra: 1200, checked: true },
+          { name: 'Individual Custom Polybag', extra: 300, checked: false },
+        ]
+      },
+      tissue: {
+        unit: 'Packs (500 Sheets)',
+        base: 28000,
+        min: 1,
+        options: [
+          { name: 'Single Color Brand Pattern (17gsm)', extra: 0, checked: true },
+          { name: 'Dual Color Brand Pattern (22gsm)', extra: 5000, checked: false },
+          { name: 'Metallic Gold Ink Accent', extra: 8000, checked: false },
+        ]
+      },
+      cards: {
+        unit: 'Packs (100 Cards)',
+        base: 9500,
+        min: 1,
+        options: [
+          { name: 'Standard Matte Lamination (350gsm)', extra: 0, checked: true },
+          { name: 'Velvet Soft-Touch Luxury Finish (600gsm)', extra: 4500, checked: false },
+          { name: 'Metallic Gold Foil Stamping', extra: 5000, checked: true },
+        ]
+      },
+      merch: {
+        unit: 'Units',
+        base: 4500,
+        min: 10,
+        options: [
+          { name: 'Ceramic Two-Tone Mug', extra: 0, checked: true },
+          { name: 'Stainless LED Thermal Tumbler', extra: 3500, checked: false },
+          { name: 'Executive Pen & Luxury Gift Box', extra: 2500, checked: false },
+        ]
+      },
+      web: {
+        unit: 'Package',
+        base: 150000,
+        min: 1,
+        options: [
+          { name: 'Starter Business Website (4-5 Pages + SEO)', extra: 0, checked: true },
+          { name: 'E-Commerce Store (Paystack + Catalog)', extra: 120000, checked: false },
+          { name: '3-Month Ad Campaign Management', extra: 90000, checked: false },
+        ]
+      }
+    };
+
+    let activeKey = 'banner';
+    const optionsContainer = document.getElementById('calcOptionsContainer');
+    const qtyLabel = document.getElementById('calcQtyLabel');
+    const qtyInput = document.getElementById('qtyInput');
+    const qtyMinus = document.getElementById('qtyMinus');
+    const qtyPlus = document.getElementById('qtyPlus');
+    const totalDisplay = document.getElementById('calcEstimatedTotal');
+    const whatsAppBtn = document.getElementById('calcWhatsAppBtn');
+    const catButtons = document.querySelectorAll('.calc-cat-btn');
+
+    function renderEstimator() {
+      const item = calcData[activeKey];
+      if (qtyLabel) qtyLabel.textContent = `3. Quantity (${item.unit})`;
+      if (qtyInput) qtyInput.value = item.min;
+
+      if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        item.options.forEach((opt, idx) => {
+          const label = document.createElement('label');
+          label.className = `flex items-center justify-between p-3 rounded-xl border text-xs sm:text-sm cursor-pointer transition-colors ${opt.checked ? 'bg-secondary-container/15 border-secondary-container/60 font-semibold text-primary-container' : 'bg-surface-container-lowest border-outline-variant/30 text-on-surface'
+            }`;
+          label.innerHTML = `
+            <div class="flex items-center gap-2.5">
+              <input type="checkbox" ${opt.checked ? 'checked' : ''} class="rounded text-primary-container focus:ring-secondary-container" />
+              <span>${opt.name}</span>
+            </div>
+            ${opt.extra > 0 ? `<span class="text-[11px] font-bold text-primary-container bg-surface-container px-2 py-0.5 rounded">+₦${opt.extra.toLocaleString()}</span>` : ''}
+          `;
+          const input = label.querySelector('input');
+          input.addEventListener('change', () => {
+            opt.checked = input.checked;
+            renderEstimator();
+          });
+          optionsContainer.appendChild(label);
+        });
+      }
+
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const item = calcData[activeKey];
+      const qty = parseInt(qtyInput.value) || item.min;
+      const extraSum = item.options.reduce((acc, o) => acc + (o.checked ? o.extra : 0), 0);
+      const total = (item.base + extraSum) * qty;
+
+      if (totalDisplay) {
+        totalDisplay.textContent = '₦' + total.toLocaleString();
+      }
+
+      if (whatsAppBtn) {
+        const checkedOpts = item.options.filter(o => o.checked).map(o => o.name).join(', ');
+        const text = `Hello RnB Digitals! I used your online estimator for:
+- Service: ${activeKey.toUpperCase()}
+- Quantity: ${qty} ${item.unit}
+- Specs: ${checkedOpts}
+- Estimated Total: ₦${total.toLocaleString()}
+
+Please let me know how to proceed.`;
+        whatsAppBtn.href = `https://wa.me/2348164171414?text=${encodeURIComponent(text)}`;
+      }
+    }
+
+    catButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        catButtons.forEach(b => {
+          b.className = 'calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-surface-container-lowest text-on-surface border-outline-variant/40 hover:bg-surface-container';
+        });
+        btn.className = 'calc-cat-btn text-left p-3 rounded-xl border text-xs md:text-sm font-semibold bg-primary-container text-on-primary border-primary-container shadow-md';
+        activeKey = btn.getAttribute('data-key');
+        renderEstimator();
+      });
+    });
+
+    if (qtyMinus) qtyMinus.addEventListener('click', () => {
+      const item = calcData[activeKey];
+      const cur = parseInt(qtyInput.value) || item.min;
+      qtyInput.value = Math.max(item.min, cur - (activeKey === 'banner' ? 10 : 5));
+      updateTotal();
+    });
+
+    if (qtyPlus) qtyPlus.addEventListener('click', () => {
+      const cur = parseInt(qtyInput.value) || 1;
+      qtyInput.value = cur + (activeKey === 'banner' ? 10 : 5);
+      updateTotal();
+    });
+
+    if (qtyInput) qtyInput.addEventListener('input', updateTotal);
+
+    renderEstimator();
+
+    // --- Contact Form Handling ---
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    if (contactForm && formSuccess) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        contactForm.classList.add('hidden');
+        formSuccess.classList.remove('hidden');
+      });
+    }
+  </script>
+</body>
+
+</html>
