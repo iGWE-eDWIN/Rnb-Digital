@@ -1,13 +1,16 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { HERO_SLIDES } from '@/data/slideshow';
+import { getHeroSlides, DEFAULT_HERO_SLIDES } from '@/lib/cms-data';
+import { HeroSlideItem } from '@/types/cms';
 
 interface HeroSlideshowProps {
   onExploreService?: (serviceId: string) => void;
+  slides?: HeroSlideItem[];
 }
 
-export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) {
+export default function HeroSlideshow({ onExploreService, slides: propSlides }: HeroSlideshowProps) {
+  const [slides, setSlides] = useState<HeroSlideItem[]>(propSlides || DEFAULT_HERO_SLIDES);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -17,13 +20,26 @@ export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) 
   const SLIDE_DURATION = 4500; // 4.5 seconds per slide
   const PROGRESS_TICK = 50; // Update progress bar every 50ms
 
+  useEffect(() => {
+    async function load() {
+      if (!propSlides) {
+        const loaded = await getHeroSlides();
+        const activeOnly = loaded.filter((s) => s.is_active);
+        if (activeOnly.length > 0) setSlides(activeOnly);
+      }
+    }
+    load();
+  }, [propSlides]);
+
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    if (slides.length === 0) return;
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
     setProgress(0);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+    if (slides.length === 0) return;
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
     setProgress(0);
   };
 
@@ -34,13 +50,14 @@ export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) 
 
   // Setup auto-cycling timer and progress bar
   useEffect(() => {
+    if (slides.length <= 1) return;
+
     if (isPaused) {
       if (timerRef.current) clearInterval(timerRef.current);
       if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
       return;
     }
 
-    // Progress bar ticker
     progressIntervalRef.current = setInterval(() => {
       setProgress((oldProgress) => {
         const increment = (PROGRESS_TICK / SLIDE_DURATION) * 100;
@@ -48,7 +65,6 @@ export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) 
       });
     }, PROGRESS_TICK);
 
-    // Auto-advance slide
     timerRef.current = setInterval(() => {
       nextSlide();
     }, SLIDE_DURATION);
@@ -57,9 +73,9 @@ export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) 
       if (timerRef.current) clearInterval(timerRef.current);
       if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
     };
-  }, [currentIndex, isPaused]);
+  }, [currentIndex, isPaused, slides.length]);
 
-  const currentSlide = HERO_SLIDES[currentIndex];
+  const currentSlide = slides[currentIndex] || slides[0] || DEFAULT_HERO_SLIDES[0];
 
   return (
     <div
@@ -70,20 +86,21 @@ export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) 
     >
       {/* Slides Container */}
       <div className="relative w-full h-full">
-        {HERO_SLIDES.map((slide, index) => {
+        {slides.map((slide, index) => {
           const isActive = index === currentIndex;
           return (
             <div
               key={slide.id}
-              className={`absolute inset-0 transition-all duration-700 ease-in-out ${isActive
+              className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                isActive
                   ? 'opacity-100 scale-100 pointer-events-auto z-10'
                   : 'opacity-0 scale-105 pointer-events-none z-0'
-                }`}
+              }`}
             >
               {/* Background Slide Image */}
               <img
-                src={slide.image}
-                alt={slide.alt}
+                src={slide.image_url}
+                alt={slide.alt || slide.title}
                 className="w-full h-full object-cover object-center transform transition-transform duration-7000 ease-out group-hover:scale-105"
               />
 
@@ -129,15 +146,16 @@ export default function HeroSlideshow({ onExploreService }: HeroSlideshowProps) 
         <div className="flex items-center justify-between gap-4 mt-4 pt-3 border-t border-white/15">
           {/* Slide Indicator Pills */}
           <div className="flex items-center gap-2">
-            {HERO_SLIDES.map((slide, idx) => (
+            {slides.map((slide, idx) => (
               <button
                 key={slide.id}
                 onClick={() => goToSlide(idx)}
                 aria-label={`Jump to slide ${idx + 1}: ${slide.title}`}
-                className={`transition-all duration-300 rounded-full cursor-pointer relative overflow-hidden ${idx === currentIndex
+                className={`transition-all duration-300 rounded-full cursor-pointer relative overflow-hidden ${
+                  idx === currentIndex
                     ? 'w-8 md:w-10 h-2.5 bg-secondary-container shadow-gold-glow'
                     : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/70'
-                  }`}
+                }`}
               />
             ))}
           </div>

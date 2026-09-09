@@ -1,12 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getPortfolioItems } from '@/lib/cms-data';
 import { PORTFOLIO_DATA } from '@/data/portfolio';
 import { PortfolioItem } from '@/types';
 
-export default function PortfolioGallery() {
+interface PortfolioGalleryProps {
+  items?: PortfolioItem[];
+}
+
+export default function PortfolioGallery({ items: propItems }: PortfolioGalleryProps) {
+  const [items, setItems] = useState<PortfolioItem[]>(propItems || PORTFOLIO_DATA);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
+
+  useEffect(() => {
+    async function load() {
+      if (!propItems) {
+        const loaded = await getPortfolioItems();
+        if (loaded && loaded.length > 0) {
+          setItems(loaded);
+        }
+      }
+    }
+    load();
+  }, [propItems]);
 
   const categories = [
     { id: 'all', label: 'All Works' },
@@ -18,8 +36,8 @@ export default function PortfolioGallery() {
 
   const filteredItems =
     activeCategory === 'all'
-      ? PORTFOLIO_DATA
-      : PORTFOLIO_DATA.filter((item) => item.category === activeCategory);
+      ? items
+      : items.filter((item) => item.category === activeCategory);
 
   return (
     <section id="portfolio" className="py-20 md:py-32 bg-surface">
@@ -66,7 +84,7 @@ export default function PortfolioGallery() {
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}
-              className="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 group cursor-pointer flex flex-col justify-between"
+              className="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 group cursor-pointer flex flex-col justify-between hover:-translate-y-1"
             >
               {/* Image Container */}
               <div className="relative h-60 w-full overflow-hidden bg-surface-deep">

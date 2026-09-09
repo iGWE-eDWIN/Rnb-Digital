@@ -2,14 +2,36 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getSiteSettings, getNavigationLinks, DEFAULT_SITE_SETTINGS, DEFAULT_NAVIGATION_LINKS } from '@/lib/cms-data';
+import { SiteSettings, NavigationLink } from '@/types/cms';
 
 interface NavbarProps {
   onOpenQuoteModal?: () => void;
+  siteSettings?: SiteSettings;
+  navigation?: NavigationLink[];
 }
 
-export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
+export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [settings, setSettings] = useState<SiteSettings>(siteSettings || DEFAULT_SITE_SETTINGS);
+  const [links, setLinks] = useState<NavigationLink[]>(
+    navigation || DEFAULT_NAVIGATION_LINKS.filter((l) => l.is_header && l.is_active)
+  );
+
+  useEffect(() => {
+    async function loadNavData() {
+      if (!siteSettings) {
+        const s = await getSiteSettings();
+        setSettings(s);
+      }
+      if (!navigation) {
+        const n = await getNavigationLinks();
+        setLinks(n.filter((l) => l.is_header && l.is_active));
+      }
+    }
+    loadNavData();
+  }, [siteSettings, navigation]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,26 +57,26 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
       <div className="bg-surface-deep text-on-primary/80 text-xs py-1.5 px-4 sm:px-6 md:px-8 lg:px-10 border-b border-primary-container/40 hidden sm:block w-full">
         <div className="w-full flex justify-between items-center">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-1.5 truncate max-w-md">
               <span className="material-symbols-outlined text-[15px] text-secondary-container">location_on</span>
-              177 Ada George by Pepperoni Junction, Port Harcourt
+              {settings.contact_address.split(',')[0]} by Pepperoni Junction, Port Harcourt
             </span>
             <span className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[15px] text-secondary-container">schedule</span>
-              Mon - Sat: 8:00 AM - 6:00 PM
+              {settings.operating_hours.split('(')[0]}
             </span>
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="tel:+2348164171414"
+              href={`tel:${settings.contact_phone.replace(/[^0-9+]/g, '')}`}
               className="flex items-center gap-1 hover:text-secondary-container transition-colors"
             >
               <span className="material-symbols-outlined text-[15px] text-secondary-container">call</span>
-              +234 816 417 1414
+              {settings.contact_phone}
             </a>
             <span className="text-primary-container">|</span>
             <a
-              href="https://wa.me/2348164171414?text=Hello%20RnB%20Digitals,%20I%20would%20like%20to%20inquire%20about%20your%20services"
+              href={`https://wa.me/${settings.contact_whatsapp}?text=Hello%20${encodeURIComponent(settings.site_name)},%20I%20would%20like%20to%20inquire%20about%20your%20services`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-secondary-container hover:underline font-semibold"
@@ -68,66 +90,45 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
       {/* Main navigation container */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-3.5 md:py-4 w-full">
         {/* Brand Logo */}
-        <a href="#hero" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md group-hover:scale-105 transition-transform duration-300">
-            <span className="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform duration-300">
-              stars
-            </span>
-          </div>
+        <Link href="#hero" className="flex items-center gap-2.5 group">
+          {settings.logo_url ? (
+            <img
+              src={settings.logo_url}
+              alt={settings.site_name}
+              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
+            />
+          ) : (
+            <div className="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md group-hover:scale-105 transition-transform duration-300">
+              <span className="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform duration-300">
+                {settings.logo_icon || 'stars'}
+              </span>
+            </div>
+          )}
           <div className="flex flex-col">
             <span className="text-xl md:text-2xl font-extrabold text-secondary-container tracking-tight leading-none font-display">
-              RnB Digitals
+              {settings.site_name}
             </span>
             <span className="text-[10px] tracking-wider text-primary-fixed uppercase font-semibold mt-0.5">
-              Premium Print & Branding
+              {settings.tagline}
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7">
-          <a
-            href="#hero"
-            className="text-secondary-container font-semibold text-sm tracking-wide border-b-2 border-secondary-container pb-0.5 px-1 hover:text-secondary-fixed transition-colors"
-          >
-            Home
-          </a>
-          <a
-            href="#services"
-            className="text-on-primary/85 hover:text-on-primary font-medium text-sm tracking-wide hover:bg-primary-container/40 duration-200 px-2 py-1 rounded-sm transition-colors"
-          >
-            Services
-          </a>
-          <a
-            href="#portfolio"
-            className="text-on-primary/85 hover:text-on-primary font-medium text-sm tracking-wide hover:bg-primary-container/40 duration-200 px-2 py-1 rounded-sm transition-colors"
-          >
-            Portfolio
-          </a>
-          <a
-            href="#store"
-            className="text-on-primary/85 hover:text-on-primary font-medium text-sm tracking-wide hover:bg-primary-container/40 duration-200 px-2 py-1 rounded-sm transition-colors"
-          >
-            Store
-          </a>
-          <a
-            href="#calculator"
-            className="text-on-primary/85 hover:text-on-primary font-medium text-sm tracking-wide hover:bg-primary-container/40 duration-200 px-2 py-1 rounded-sm transition-colors"
-          >
-            Estimator
-          </a>
-          <a
-            href="#about"
-            className="text-on-primary/85 hover:text-on-primary font-medium text-sm tracking-wide hover:bg-primary-container/40 duration-200 px-2 py-1 rounded-sm transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            className="text-on-primary/85 hover:text-on-primary font-medium text-sm tracking-wide hover:bg-primary-container/40 duration-200 px-2 py-1 rounded-sm transition-colors"
-          >
-            Contact
-          </a>
+        <nav className="hidden md:flex items-center gap-6 lg:gap-7">
+          {links.map((link, idx) => (
+            <a
+              key={link.id || idx}
+              href={link.href}
+              className={`font-medium text-sm tracking-wide transition-colors ${
+                link.href === '#hero'
+                  ? 'text-secondary-container font-semibold border-b-2 border-secondary-container pb-0.5 px-1 hover:text-secondary-fixed'
+                  : 'text-on-primary/85 hover:text-on-primary hover:bg-primary-container/40 px-2 py-1 rounded-sm'
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         {/* Actions */}
@@ -148,6 +149,15 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
             Get Quote
           </button>
 
+          {/* Admin CMS Quick Portal Link (Discreet) */}
+          <Link
+            href="/admin"
+            className="hidden sm:inline-flex p-2 text-on-primary/60 hover:text-secondary-container rounded-lg transition-colors"
+            title="Admin CMS Portal"
+          >
+            <span className="material-symbols-outlined text-lg">admin_panel_settings</span>
+          </Link>
+
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -165,74 +175,37 @@ export default function Navbar({ onOpenQuoteModal }: NavbarProps) {
       {mobileMenuOpen && (
         <div className="md:hidden bg-surface-deep border-t border-primary-container px-margin-mobile py-6 flex flex-col gap-4 animate-fade-in shadow-2xl">
           <nav className="flex flex-col gap-3">
-            <a
-              href="#hero"
+            {links.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-on-primary/90 hover:text-secondary-container font-medium text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
+              >
+                <span>{link.label}</span>
+                <span className="material-symbols-outlined text-sm">chevron_right</span>
+              </a>
+            ))}
+            <Link
+              href="/admin"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-secondary-container font-semibold text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
+              className="text-secondary-container font-bold text-sm py-2 flex items-center justify-between pt-3"
             >
-              <span>Home</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a
-              href="#services"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-on-primary/90 hover:text-on-primary font-medium text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
-            >
-              <span>Services</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a
-              href="#portfolio"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-on-primary/90 hover:text-on-primary font-medium text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
-            >
-              <span>Portfolio</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a
-              href="#store"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-on-primary/90 hover:text-on-primary font-medium text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
-            >
-              <span>Product Catalog</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a
-              href="#calculator"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-on-primary/90 hover:text-on-primary font-medium text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
-            >
-              <span>Instant Price Estimator</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a
-              href="#about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-on-primary/90 hover:text-on-primary font-medium text-base py-2 border-b border-primary-container/50 flex items-center justify-between"
-            >
-              <span>About Us</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-on-primary/90 hover:text-on-primary font-medium text-base py-2 flex items-center justify-between"
-            >
-              <span>Contact & Location</span>
-              <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </a>
+              <span>Admin CMS Portal</span>
+              <span className="material-symbols-outlined text-sm">lock</span>
+            </Link>
           </nav>
 
           <div className="pt-4 border-t border-primary-container/60 flex flex-col gap-3">
             <a
-              href="tel:+2348164171414"
+              href={`tel:${settings.contact_phone.replace(/[^0-9+]/g, '')}`}
               className="flex items-center justify-center gap-2 bg-primary-container text-on-primary py-3 rounded-lg font-semibold text-sm"
             >
               <span className="material-symbols-outlined text-lg text-secondary-container">call</span>
-              Call +234 816 417 1414
+              Call {settings.contact_phone}
             </a>
             <a
-              href="https://wa.me/2348164171414?text=Hello%20RnB%20Digitals,%20I%20would%20like%20to%20place%20an%20order"
+              href={`https://wa.me/${settings.contact_whatsapp}?text=Hello%20${encodeURIComponent(settings.site_name)},%20I%20would%20like%20to%20place%20an%20order`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 bg-secondary-container text-on-secondary-container py-3 rounded-lg font-bold text-sm shadow-md"

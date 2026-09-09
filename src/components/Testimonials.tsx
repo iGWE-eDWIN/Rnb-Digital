@@ -1,9 +1,31 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getTestimonials } from '@/lib/cms-data';
 import { TESTIMONIALS_DATA } from '@/data/testimonials';
+import { TestimonialItem } from '@/types';
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  testimonials?: TestimonialItem[];
+}
+
+export default function Testimonials({ testimonials: propTestimonials }: TestimonialsProps) {
+  const [testimonials, setTestimonials] = useState<TestimonialItem[]>(
+    propTestimonials || TESTIMONIALS_DATA
+  );
+
+  useEffect(() => {
+    async function load() {
+      if (!propTestimonials) {
+        const loaded = await getTestimonials();
+        if (loaded && loaded.length > 0) {
+          setTestimonials(loaded);
+        }
+      }
+    }
+    load();
+  }, [propTestimonials]);
+
   return (
     <section className="py-20 md:py-28 bg-surface relative">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
@@ -23,7 +45,7 @@ export default function Testimonials() {
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS_DATA.map((t) => (
+          {testimonials.map((t) => (
             <div
               key={t.id}
               className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between"
@@ -32,7 +54,7 @@ export default function Testimonials() {
                 {/* Rating Stars & Project tag */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex text-secondary-container">
-                    {[...Array(t.rating)].map((_, i) => (
+                    {[...Array(t.rating || 5)].map((_, i) => (
                       <span key={i} className="material-symbols-outlined text-lg fill-current">
                         star
                       </span>

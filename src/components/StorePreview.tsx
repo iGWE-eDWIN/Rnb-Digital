@@ -1,9 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getProducts } from '@/lib/cms-data';
 import { PRODUCTS_DATA } from '@/data/products';
+import { ProductItem } from '@/types';
 
-export default function StorePreview() {
+interface StorePreviewProps {
+  products?: ProductItem[];
+}
+
+export default function StorePreview({ products: propProducts }: StorePreviewProps) {
+  const [products, setProducts] = useState<ProductItem[]>(propProducts || PRODUCTS_DATA);
+
+  useEffect(() => {
+    async function load() {
+      if (!propProducts) {
+        const loaded = await getProducts();
+        if (loaded && loaded.length > 0) {
+          setProducts(loaded);
+        }
+      }
+    }
+    load();
+  }, [propProducts]);
+
   return (
     <section id="store" className="py-20 md:py-28 bg-surface-container-low relative">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
@@ -35,7 +55,7 @@ export default function StorePreview() {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRODUCTS_DATA.map((product) => (
+          {products.map((product) => (
             <div
               key={product.id}
               className="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"

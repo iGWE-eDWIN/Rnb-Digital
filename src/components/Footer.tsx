@@ -1,10 +1,36 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { getSiteSettings, getNavigationLinks, DEFAULT_SITE_SETTINGS, DEFAULT_NAVIGATION_LINKS } from '@/lib/cms-data';
+import { SiteSettings, NavigationLink } from '@/types/cms';
 
-export default function Footer() {
+interface FooterProps {
+  settings?: SiteSettings;
+  navigationLinks?: NavigationLink[];
+}
+
+export default function Footer({ settings: propSettings, navigationLinks: propNav }: FooterProps) {
+  const [settings, setSettings] = useState<SiteSettings>(propSettings || DEFAULT_SITE_SETTINGS);
+  const [navLinks, setNavLinks] = useState<NavigationLink[]>(
+    propNav || DEFAULT_NAVIGATION_LINKS.filter((l) => l.is_footer && l.is_active)
+  );
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+
+  useEffect(() => {
+    async function load() {
+      if (!propSettings) {
+        const loaded = await getSiteSettings();
+        if (loaded) setSettings(loaded);
+      }
+      if (!propNav) {
+        const loadedNav = await getNavigationLinks();
+        if (loadedNav) setNavLinks(loadedNav.filter((l) => l.is_footer && l.is_active));
+      }
+    }
+    load();
+  }, [propSettings, propNav]);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,25 +46,35 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 px-4 sm:px-6 md:px-8 lg:px-10 py-16 w-full">
         {/* Brand Column */}
         <div className="lg:col-span-2 flex flex-col gap-4">
-          <a href="#hero" className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md">
-              <span className="material-symbols-outlined text-2xl">stars</span>
-            </div>
+          <Link href="#hero" className="flex items-center gap-2.5">
+            {settings.logo_url ? (
+              <img
+                src={settings.logo_url}
+                alt={settings.site_name}
+                className="h-10 w-auto object-contain"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md">
+                <span className="material-symbols-outlined text-2xl">
+                  {settings.logo_icon || 'stars'}
+                </span>
+              </div>
+            )}
             <span className="text-2xl font-extrabold text-secondary-container font-display tracking-tight">
-              RnB Digitals
+              {settings.site_name}
             </span>
-          </a>
+          </Link>
           <p className="text-sm text-on-primary/80 leading-relaxed max-w-sm">
-            Port Harcourt's leading design, industrial printing, custom apparel embroidery, and corporate branding agency. Elevating brand presence with uncompromised precision.
+            {settings.footer_description}
           </p>
           <div className="text-xs text-on-primary/70 pt-2 flex flex-col gap-1">
             <span className="flex items-center gap-1.5 text-secondary-container font-semibold">
               <span className="material-symbols-outlined text-sm">location_on</span>
-              177 Ada George Road, Port Harcourt, Rivers State
+              {settings.contact_address.split(',')[0]}, Port Harcourt, Rivers State
             </span>
             <span className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-sm text-secondary-container">call</span>
-              +234 816 417 1414 • info@rnbdigitals.com
+              {settings.contact_phone} • {settings.contact_email}
             </span>
           </div>
         </div>
@@ -68,29 +104,27 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick Links from Navigation */}
         <div className="flex flex-col gap-3">
           <h4 className="font-bold text-sm text-on-primary uppercase tracking-wider mb-1 text-secondary-container">
             Quick Navigation
           </h4>
-          <a href="#hero" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            Home
-          </a>
-          <a href="#portfolio" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            Portfolio Gallery
-          </a>
-          <a href="#store" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            Product Catalog
-          </a>
-          <a href="#calculator" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            Price Estimator
-          </a>
-          <a href="#about" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            About Our Workshop
-          </a>
-          <a href="#contact" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            Contact & Map
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+          <Link
+            href="/admin"
+            className="text-xs sm:text-sm text-secondary-container font-semibold hover:underline flex items-center gap-1 mt-1"
+          >
+            <span>Admin CMS Login</span>
+            <span className="material-symbols-outlined text-xs">lock</span>
+          </Link>
         </div>
 
         {/* Newsletter & Direct Order */}
@@ -128,7 +162,7 @@ export default function Footer() {
 
           <div className="pt-2">
             <a
-              href="https://wa.me/2348164171414"
+              href={`https://wa.me/${settings.contact_whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-secondary-container font-semibold hover:underline"
@@ -144,7 +178,7 @@ export default function Footer() {
       <div className="border-t border-white/10 px-margin-mobile md:px-margin-desktop py-6">
         <div className="max-w-container-max mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs text-on-primary/60">
           <div>
-            © {new Date().getFullYear()} RnB Digitals. All Rights Reserved. Premium Print & Digital Solutions.
+            {settings.footer_copyright}
           </div>
           <div className="flex items-center gap-6">
             <span>Port Harcourt • Lagos • Abuja • Nationwide</span>

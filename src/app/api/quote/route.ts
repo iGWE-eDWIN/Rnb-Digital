@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { getSupabaseClient, isSupabaseConfigured } from '@/lib/supabase/client';
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +14,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // Process inquiry / Send notification or store in database
+    // Insert into Supabase if configured
+    const supabase = getSupabaseClient();
+    if (supabase && isSupabaseConfigured()) {
+      await supabase.from('quote_inquiries').insert([
+        {
+          name,
+          email: email || null,
+          phone,
+          service: service || null,
+          quantity: quantity ? String(quantity) : null,
+          estimated_total: estimatedTotal ? String(estimatedTotal) : null,
+          message: message || null,
+          status: 'pending',
+        },
+      ]);
+    }
+
     console.log('Received RnB Digitals Project Inquiry:', {
       name,
       email,

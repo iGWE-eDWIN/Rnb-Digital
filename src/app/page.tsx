@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSlideshow from '@/components/HeroSlideshow';
 import ServicesGrid from '@/components/ServicesGrid';
@@ -11,9 +11,20 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import Testimonials from '@/components/Testimonials';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import { getSiteSettings, DEFAULT_SITE_SETTINGS } from '@/lib/cms-data';
+import { SiteSettings } from '@/types/cms';
 
 export default function Home() {
   const [activeQuoteService, setActiveQuoteService] = useState<string>('Large Format Printing');
+  const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SITE_SETTINGS);
+
+  useEffect(() => {
+    async function loadSettings() {
+      const s = await getSiteSettings();
+      if (s) setSettings(s);
+    }
+    loadSettings();
+  }, []);
 
   const handleOpenQuote = (serviceName?: string) => {
     if (serviceName) {
@@ -28,7 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-surface text-on-surface">
       {/* Navigation Bar */}
-      <Navbar onOpenQuoteModal={() => handleOpenQuote()} />
+      <Navbar onOpenQuoteModal={() => handleOpenQuote()} siteSettings={settings} />
 
       <main className="flex-grow">
         {/* ===================== HERO SECTION ===================== */}
@@ -42,36 +53,49 @@ export default function Home() {
               {/* Trust Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-badge border border-secondary-container/30 text-secondary-container text-xs font-bold tracking-wide shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-secondary-container animate-ping" />
-                <span>Port Harcourt's #1 Print & Branding Agency</span>
+                <span>{settings.announcement_badge}</span>
               </div>
 
               {/* Main Headline */}
               <h1 className="font-extrabold text-on-primary text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] font-display">
-                Your Brand <br />
-                Deserves <br />
-                <span className="text-secondary-container drop-shadow-sm">to Be Seen</span>
+                {settings.hero_title.includes('Deserves') ? (
+                  <>
+                    Your Brand <br />
+                    Deserves <br />
+                    <span className="text-secondary-container drop-shadow-sm">
+                      {settings.hero_subtitle || 'to Be Seen'}
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    {settings.hero_title} <br />
+                    <span className="text-secondary-container drop-shadow-sm">
+                      {settings.hero_subtitle}
+                    </span>
+                  </>
+                )}
               </h1>
 
               {/* Supporting Copy */}
               <p className="text-on-primary/90 text-base sm:text-lg lg:text-xl font-normal leading-relaxed">
-                Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact digital solutions for businesses that mean business.
+                {settings.hero_description}
               </p>
 
               {/* Dual Action Buttons */}
               <div className="flex flex-wrap items-center gap-4 mt-2 w-full sm:w-auto">
                 <a
-                  href="#calculator"
-                  className="w-full sm:w-auto bg-secondary-container text-on-secondary-container font-extrabold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow hover:-translate-y-1 flex items-center justify-center gap-2 text-center"
+                  href={settings.hero_cta1_link || '#calculator'}
+                  className="w-full sm:w-auto bg-secondary-container text-on-secondary-container font-extrabold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow hover:-translate-y-1 flex items-center justify-center gap-2 text-center cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-lg">calculate</span>
-                  <span>Get Instant Quote</span>
+                  <span>{settings.hero_cta1_text || 'Get Instant Quote'}</span>
                 </a>
                 <a
-                  href="#portfolio"
-                  className="w-full sm:w-auto bg-transparent border-2 border-on-primary text-on-primary font-bold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-on-primary/10 transition-all duration-300 flex items-center justify-center gap-2 text-center"
+                  href={settings.hero_cta2_link || '#portfolio'}
+                  className="w-full sm:w-auto bg-transparent border-2 border-on-primary text-on-primary font-bold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-on-primary/10 transition-all duration-300 flex items-center justify-center gap-2 text-center cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-lg">grid_view</span>
-                  <span>View Portfolio</span>
+                  <span>{settings.hero_cta2_text || 'View Portfolio'}</span>
                 </a>
               </div>
 
@@ -92,7 +116,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Hero Automated Slideshow / Carousel (Crucial Stitch Modification) */}
+            {/* Right Column: Hero Automated Slideshow / Carousel */}
             <div className="w-full relative">
               <HeroSlideshow onExploreService={(svc) => handleOpenQuote(svc)} />
             </div>
@@ -102,8 +126,6 @@ export default function Home() {
           <div className="absolute -bottom-28 -right-28 w-96 h-96 bg-primary-fixed/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute top-12 -left-16 w-72 h-72 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none" />
         </section>
-
-
 
         {/* ===================== SERVICES SECTION ===================== */}
         <ServicesGrid onSelectServiceForQuote={(title) => setActiveQuoteService(title)} />
@@ -124,11 +146,11 @@ export default function Home() {
         <Testimonials />
 
         {/* ===================== CONTACT & WORKSHOP LOCATION ===================== */}
-        <ContactSection />
+        <ContactSection settings={settings} />
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer settings={settings} />
     </div>
   );
 }

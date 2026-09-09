@@ -1,16 +1,31 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getServices } from '@/lib/cms-data';
 import { SERVICES_DATA } from '@/data/services';
 import { ServiceItem } from '@/types';
 import ServiceModal from './ServiceModal';
 
 interface ServicesGridProps {
   onSelectServiceForQuote?: (serviceTitle: string) => void;
+  services?: ServiceItem[];
 }
 
-export default function ServicesGrid({ onSelectServiceForQuote }: ServicesGridProps) {
+export default function ServicesGrid({ onSelectServiceForQuote, services: propServices }: ServicesGridProps) {
+  const [services, setServices] = useState<ServiceItem[]>(propServices || SERVICES_DATA);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+
+  useEffect(() => {
+    async function load() {
+      if (!propServices) {
+        const loaded = await getServices();
+        if (loaded && loaded.length > 0) {
+          setServices(loaded);
+        }
+      }
+    }
+    load();
+  }, [propServices]);
 
   const getServiceIcon = (iconName: string) => {
     switch (iconName) {
@@ -48,9 +63,9 @@ export default function ServicesGrid({ onSelectServiceForQuote }: ServicesGridPr
           </p>
         </div>
 
-        {/* Services Grid (6 Cards) */}
+        {/* Services Grid (Cards) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES_DATA.map((service) => (
+          {services.map((service) => (
             <div
               key={service.id}
               className="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1.5"

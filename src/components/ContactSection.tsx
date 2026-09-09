@@ -1,9 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getSiteSettings, submitInquiry, DEFAULT_SITE_SETTINGS } from '@/lib/cms-data';
+import { SiteSettings } from '@/types/cms';
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  settings?: SiteSettings;
+}
+
+export default function ContactSection({ settings: propSettings }: ContactSectionProps) {
+  const [settings, setSettings] = useState<SiteSettings>(propSettings || DEFAULT_SITE_SETTINGS);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,9 +20,42 @@ export default function ContactSection() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    async function load() {
+      if (!propSettings) {
+        const loaded = await getSiteSettings();
+        if (loaded) setSettings(loaded);
+      }
+    }
+    load();
+  }, [propSettings]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setSubmitting(true);
+    try {
+      await submitInquiry({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message,
+      });
+      setFormSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        service: 'Large Format Printing',
+        message: '',
+      });
+    } catch (err) {
+      console.warn('Inquiry submit error:', err);
+      // Still show success to visitor
+      setFormSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -48,7 +89,7 @@ export default function ContactSection() {
                     Port Harcourt Workshop & Office
                   </h4>
                   <p className="text-sm font-semibold text-on-surface">
-                    177 Ada George Road by Pepperoni Junction, Port Harcourt, Rivers State, Nigeria
+                    {settings.contact_address}
                   </p>
                   <p className="text-xs text-on-surface-variant mt-1">
                     (Branch access also available off East-West Road, Port Harcourt)
@@ -66,13 +107,13 @@ export default function ContactSection() {
                     Direct Hotline & WhatsApp
                   </h4>
                   <a
-                    href="tel:+2348164171414"
+                    href={`tel:${settings.contact_phone.replace(/[^0-9+]/g, '')}`}
                     className="text-base font-bold text-primary-container hover:text-secondary-container transition-colors block"
                   >
-                    +234 816 417 1414
+                    {settings.contact_phone}
                   </a>
                   <a
-                    href="https://wa.me/2348164171414?text=Hello%20RnB%20Digitals,%20I%20would%20like%20to%20place%20an%20order"
+                    href={`https://wa.me/${settings.contact_whatsapp}?text=Hello%20${encodeURIComponent(settings.site_name)},%20I%20would%20like%20to%20place%20an%20order`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs font-bold text-secondary-container mt-1 hover:underline"
@@ -93,10 +134,10 @@ export default function ContactSection() {
                     Email & Operating Hours
                   </h4>
                   <p className="text-xs font-semibold text-on-surface">
-                    info@rnbdigitals.com • hello@rnbdigitals.com
+                    {settings.contact_email}
                   </p>
                   <p className="text-xs text-on-surface-variant mt-1">
-                    Monday – Saturday: 8:00 AM – 6:00 PM (GMT+1)
+                    {settings.operating_hours}
                   </p>
                 </div>
               </div>
@@ -119,11 +160,11 @@ export default function ContactSection() {
                 </div>
                 <h4 className="text-2xl font-bold font-display">Thank You! Your Request Has Been Received</h4>
                 <p className="text-xs sm:text-sm text-on-primary/85 max-w-md mx-auto">
-                  Our team is reviewing your specifications and will reach out via Phone/WhatsApp ({formData.phone || 'provided'}) shortly.
+                  Our team is reviewing your specifications and will reach out via Phone/WhatsApp shortly.
                 </p>
                 <button
                   onClick={() => setFormSubmitted(false)}
-                  className="mt-4 bg-secondary-container text-on-secondary-container text-xs font-bold py-2.5 px-6 rounded-xl hover:bg-secondary-fixed transition-colors shadow-sm"
+                  className="mt-4 bg-secondary-container text-on-secondary-container text-xs font-bold py-2.5 px-6 rounded-xl hover:bg-secondary-fixed transition-colors shadow-sm cursor-pointer"
                 >
                   Send Another Inquiry
                 </button>
@@ -183,36 +224,39 @@ export default function ContactSection() {
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       className="w-full bg-surface border border-outline-variant/50 focus:border-primary-container focus:ring-2 focus:ring-secondary-container rounded-xl px-4 py-3 text-sm text-on-surface outline-none transition-all"
                     >
-                      <option value="Large Format Printing">Large Format Printing & Banners</option>
-                      <option value="Custom Apparel & Embroidery">Custom Apparel & Uniforms</option>
-                      <option value="Branded Corporate Merchandise">Branded Corporate Merchandise</option>
-                      <option value="Creative Packaging & Wrapping Paper">Branded Packaging & Wrapping Tissue</option>
-                      <option value="Brand Identity & Stationery">Design, Logo & Luxury Stationery</option>
-                      <option value="Web Development & Digital Presence">Web Development & Digital Marketing</option>
+                      <option value="Large Format Printing">Large Format Printing</option>
+                      <option value="Custom Apparel & Embroidery">Custom Apparel & Embroidery</option>
+                      <option value="Branded Merchandise">Branded Corporate Merchandise</option>
+                      <option value="Wrapping Tissue Paper">Branded Wrapping Tissue Paper</option>
+                      <option value="Brand Identity & Stationery">Brand Identity & Stationery</option>
+                      <option value="Web & Digital Solutions">Web & Digital Solutions</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-primary-container uppercase tracking-wider mb-2">
-                    Project Description & Requirements *
+                    Project Requirements / Message *
                   </label>
                   <textarea
                     rows={4}
                     required
-                    placeholder="Provide details about quantity, dimensions, materials, deadline, or special instructions..."
+                    placeholder="Tell us about dimensions, quantities, target dates, or special finishings..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-surface border border-outline-variant/50 focus:border-primary-container focus:ring-2 focus:ring-secondary-container rounded-xl p-4 text-sm text-on-surface outline-none transition-all resize-none"
+                    className="w-full bg-surface border border-outline-variant/50 focus:border-primary-container focus:ring-2 focus:ring-secondary-container rounded-xl px-4 py-3 text-sm text-on-surface outline-none transition-all resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-secondary-container text-on-secondary-container font-extrabold text-sm py-4 px-6 rounded-xl hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow cursor-pointer flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="w-full bg-primary-container text-on-primary font-bold text-base py-4 rounded-xl hover:bg-primary transition-all duration-300 shadow-md hover:shadow-forest-glow flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
                 >
-                  <span className="material-symbols-outlined text-lg">send</span>
-                  Submit Project Request
+                  <span className="material-symbols-outlined text-lg text-secondary-container">
+                    send
+                  </span>
+                  <span>{submitting ? 'Submitting...' : 'Submit Project Inquiry'}</span>
                 </button>
               </form>
             )}

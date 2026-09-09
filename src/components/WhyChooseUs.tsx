@@ -1,34 +1,35 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getAboutPillars, getSiteStats, DEFAULT_ABOUT_PILLARS, DEFAULT_SITE_STATS } from '@/lib/cms-data';
+import { AboutPillar, SiteStat } from '@/types/cms';
 
-export default function WhyChooseUs() {
-  const pillars = [
-    {
-      icon: 'precision_manufacturing',
-      title: 'State-of-the-Art Technology',
-      description:
-        'Industrial multi-needle embroidery stations, high-resolution UV wide-format presses, and precision die-cutting equipment.',
-    },
-    {
-      icon: 'verified',
-      title: 'Uncompromising Quality',
-      description:
-        'We use only premium 440-510gsm flex, heavy 220gsm combed cotton, acid-free tissue, and UV-resistant outdoor pigments.',
-    },
-    {
-      icon: 'local_shipping',
-      title: 'Swift Nationwide Delivery',
-      description:
-        'Headquartered at Ada George, Port Harcourt with reliable courier dispatch delivering on time to Lagos, Abuja, and all 36 states.',
-    },
-    {
-      icon: 'support_agent',
-      title: 'Dedicated Account Support',
-      description:
-        'Direct consultation with expert graphic designers and print technicians to perfect your artwork before production.',
-    },
-  ];
+interface WhyChooseUsProps {
+  pillars?: AboutPillar[];
+  stats?: SiteStat[];
+}
+
+export default function WhyChooseUs({ pillars: propPillars, stats: propStats }: WhyChooseUsProps) {
+  const [pillars, setPillars] = useState<AboutPillar[]>(propPillars || DEFAULT_ABOUT_PILLARS);
+  const [stats, setStats] = useState<SiteStat[]>(propStats || DEFAULT_SITE_STATS);
+
+  useEffect(() => {
+    async function load() {
+      if (!propPillars) {
+        const loadedPillars = await getAboutPillars();
+        if (loadedPillars && loadedPillars.length > 0) {
+          setPillars(loadedPillars.filter((p) => p.is_active));
+        }
+      }
+      if (!propStats) {
+        const loadedStats = await getSiteStats();
+        if (loadedStats && loadedStats.length > 0) {
+          setStats(loadedStats.filter((s) => s.is_active));
+        }
+      }
+    }
+    load();
+  }, [propPillars, propStats]);
 
   return (
     <section id="about" className="py-20 md:py-32 bg-primary-container text-on-primary relative overflow-hidden">
@@ -47,11 +48,11 @@ export default function WhyChooseUs() {
           </p>
         </div>
 
-        {/* 4 Pillars Grid */}
+        {/* Pillars Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {pillars.map((pillar, idx) => (
+          {pillars.map((pillar) => (
             <div
-              key={idx}
+              key={pillar.id}
               className="bg-surface-deep/70 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-secondary-container/50 transition-all duration-300 group hover:-translate-y-1"
             >
               <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-secondary-container mb-5 group-hover:scale-110 transition-transform">
@@ -69,38 +70,16 @@ export default function WhyChooseUs() {
 
         {/* Stats Counter Bar */}
         <div className="bg-primary/80 border border-white/15 rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-xl">
-          <div>
-            <div className="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">
-              500+
+          {stats.map((stat) => (
+            <div key={stat.id}>
+              <div className="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">
+                {stat.value}
+              </div>
+              <div className="text-xs md:text-sm text-on-primary/80 mt-1 uppercase tracking-wider font-semibold">
+                {stat.label}
+              </div>
             </div>
-            <div className="text-xs md:text-sm text-on-primary/80 mt-1 uppercase tracking-wider font-semibold">
-              Completed Projects
-            </div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">
-              99.8%
-            </div>
-            <div className="text-xs md:text-sm text-on-primary/80 mt-1 uppercase tracking-wider font-semibold">
-              Client Satisfaction
-            </div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">
-              24-48h
-            </div>
-            <div className="text-xs md:text-sm text-on-primary/80 mt-1 uppercase tracking-wider font-semibold">
-              Fast Turnaround
-            </div>
-          </div>
-          <div>
-            <div className="text-3xl md:text-5xl font-extrabold text-secondary-container font-display">
-              36
-            </div>
-            <div className="text-xs md:text-sm text-on-primary/80 mt-1 uppercase tracking-wider font-semibold">
-              States Delivered
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
