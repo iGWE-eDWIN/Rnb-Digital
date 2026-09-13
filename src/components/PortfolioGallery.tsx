@@ -87,19 +87,25 @@ export default function PortfolioGallery({ items: propItems }: PortfolioGalleryP
               className="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 group cursor-pointer flex flex-col justify-between hover:-translate-y-1"
             >
               {/* Image Container */}
-              <div className="relative h-60 w-full overflow-hidden bg-surface-deep">
+              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-surface-deep flex items-center justify-center">
+                <img
+                  src={item.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover filter blur-md opacity-30 scale-110 pointer-events-none"
+                />
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="relative z-10 w-full h-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 z-20">
                   <span className="text-xs font-bold text-secondary-container bg-primary/90 px-3 py-1.5 rounded-lg flex items-center gap-1">
                     <span className="material-symbols-outlined text-sm">fullscreen</span>
                     View Project Details
                   </span>
                 </div>
-                <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-deep/90 text-secondary-container border border-secondary-container/30">
+                <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-surface-deep/90 text-secondary-container border border-secondary-container/30 z-20">
                   {item.categoryLabel}
                 </span>
               </div>
@@ -139,15 +145,21 @@ export default function PortfolioGallery({ items: propItems }: PortfolioGalleryP
       {selectedItem && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary/80 backdrop-blur-md animate-fade-in">
           <div className="relative bg-surface-container-lowest text-on-surface rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-outline-variant/40">
-            <div className="relative h-72 sm:h-80 w-full overflow-hidden rounded-t-2xl bg-surface-deep">
+            <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-t-2xl bg-surface-deep flex items-center justify-center">
+              <img
+                src={selectedItem.image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover filter blur-lg opacity-35 scale-110 pointer-events-none"
+              />
               <img
                 src={selectedItem.image}
                 alt={selectedItem.title}
-                className="w-full h-full object-cover"
+                className="relative z-10 max-h-full max-w-full object-contain p-3 drop-shadow-2xl"
               />
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-primary/80 hover:bg-secondary-container hover:text-on-secondary-container text-on-primary flex items-center justify-center transition-colors shadow-md"
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-primary/80 hover:bg-secondary-container hover:text-on-secondary-container text-on-primary flex items-center justify-center transition-colors shadow-md z-20 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-xl">close</span>
               </button>

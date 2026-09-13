@@ -61,18 +61,24 @@ export default function StorePreview({ products: propProducts }: StorePreviewPro
               className="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
             >
               {/* Product Image */}
-              <div className="relative h-48 w-full overflow-hidden bg-surface-container">
+              <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-surface-container-low flex items-center justify-center p-3">
+                <img
+                  src={product.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover filter blur-md opacity-20 scale-110 pointer-events-none"
+                />
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="relative z-10 max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
                 {product.badge && (
-                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container shadow-sm">
+                  <span className="absolute top-3 left-3 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-secondary-container text-on-secondary-container shadow-sm z-20">
                     {product.badge}
                   </span>
                 )}
-                <span className="absolute bottom-3 right-3 text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/80 text-on-primary">
+                <span className="absolute bottom-3 right-3 text-[10px] font-semibold px-2 py-0.5 rounded bg-primary/80 text-on-primary z-20">
                   Min: {product.minOrder}
                 </span>
               </div>

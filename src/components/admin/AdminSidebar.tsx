@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { LOGO_IMAGE_SRC } from '@/lib/logo-base64';
 
 interface AdminSidebarProps {
   isOpen: boolean;
@@ -53,18 +54,12 @@ export default function AdminSidebar({ isOpen, onCloseMobile }: AdminSidebarProp
         {/* Brand Header */}
         <div>
           <div className="h-16 px-6 flex items-center justify-between border-b border-primary-container/40">
-            <Link href="/admin" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md">
-                <span className="material-symbols-outlined text-xl">stars</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-extrabold text-secondary-container tracking-tight leading-tight font-display">
-                  RnB Admin
-                </span>
-                <span className="text-[10px] tracking-wider text-primary-fixed uppercase font-semibold">
-                  Content Studio
-                </span>
-              </div>
+            <Link href="/admin" className="flex items-center group">
+              <img
+                src={LOGO_IMAGE_SRC}
+                alt="RnB Digitals"
+                className="h-8 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              />
             </Link>
 
             <button

@@ -81,37 +81,19 @@ export default function Home() {
                 {settings.hero_description}
               </p>
 
-              {/* Dual Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 mt-2 w-full sm:w-auto">
-                <a
-                  href={settings.hero_cta1_link || '#calculator'}
-                  className="w-full sm:w-auto bg-secondary-container text-on-secondary-container font-extrabold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow hover:-translate-y-1 flex items-center justify-center gap-2 text-center cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-lg">calculate</span>
-                  <span>{settings.hero_cta1_text || 'Get Instant Quote'}</span>
-                </a>
-                <a
-                  href={settings.hero_cta2_link || '#portfolio'}
-                  className="w-full sm:w-auto bg-transparent border-2 border-on-primary text-on-primary font-bold text-sm sm:text-base py-3.5 px-8 rounded-xl hover:bg-on-primary/10 transition-all duration-300 flex items-center justify-center gap-2 text-center cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-lg">grid_view</span>
-                  <span>{settings.hero_cta2_text || 'View Portfolio'}</span>
-                </a>
-              </div>
-
               {/* Trust Metrics Pill Bar */}
-              <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-on-primary/80 border-t border-white/15 w-full">
+              <div className="mt-2 pt-4 flex flex-wrap items-center gap-6 text-xs text-on-primary/80 border-t border-white/15 w-full">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-secondary-container text-base">verified</span>
                   <span>Industrial Precision</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-secondary-container text-base">bolt</span>
-                  <span>24-48h Rush Available</span>
+                  <span>24-48h Delivery Available</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-secondary-container text-base">local_shipping</span>
-                  <span>Nationwide Courier</span>
+                  <span>Nationwide Delivery</span>
                 </div>
               </div>
             </div>

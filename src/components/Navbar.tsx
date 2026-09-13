@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getSiteSettings, getNavigationLinks, DEFAULT_SITE_SETTINGS, DEFAULT_NAVIGATION_LINKS } from '@/lib/cms-data';
 import { SiteSettings, NavigationLink } from '@/types/cms';
+import { LOGO_IMAGE_SRC } from '@/lib/logo-base64';
 
 interface NavbarProps {
   onOpenQuoteModal?: () => void;
@@ -47,11 +48,10 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
 
   return (
     <header
-      className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
+      className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled
           ? 'bg-primary/95 backdrop-blur-md shadow-lg border-b border-primary-container'
           : 'bg-primary border-none shadow-sm'
-      }`}
+        }`}
     >
       {/* Top micro bar for quick contact */}
       <div className="bg-surface-deep text-on-primary/80 text-xs py-1.5 px-4 sm:px-6 md:px-8 lg:px-10 border-b border-primary-container/40 hidden sm:block w-full">
@@ -90,28 +90,12 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
       {/* Main navigation container */}
       <div className="flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-10 py-3.5 md:py-4 w-full">
         {/* Brand Logo */}
-        <Link href="#hero" className="flex items-center gap-2.5 group">
-          {settings.logo_url ? (
-            <img
-              src={settings.logo_url}
-              alt={settings.site_name}
-              className="h-10 w-auto object-contain group-hover:scale-105 transition-transform"
-            />
-          ) : (
-            <div className="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md group-hover:scale-105 transition-transform duration-300">
-              <span className="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform duration-300">
-                {settings.logo_icon || 'stars'}
-              </span>
-            </div>
-          )}
-          <div className="flex flex-col">
-            <span className="text-xl md:text-2xl font-extrabold text-secondary-container tracking-tight leading-none font-display">
-              {settings.site_name}
-            </span>
-            <span className="text-[10px] tracking-wider text-primary-fixed uppercase font-semibold mt-0.5">
-              {settings.tagline}
-            </span>
-          </div>
+        <Link href="#hero" className="flex items-center group py-0.5">
+          <img
+            src={(settings.logo_url && settings.logo_url.startsWith('http')) ? settings.logo_url : LOGO_IMAGE_SRC}
+            alt={settings.site_name || 'RnB Digitals'}
+            className="h-9 sm:h-10 md:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -120,11 +104,10 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
             <a
               key={link.id || idx}
               href={link.href}
-              className={`font-medium text-sm tracking-wide transition-colors ${
-                link.href === '#hero'
+              className={`font-medium text-sm tracking-wide transition-colors ${link.href === '#hero'
                   ? 'text-secondary-container font-semibold border-b-2 border-secondary-container pb-0.5 px-1 hover:text-secondary-fixed'
                   : 'text-on-primary/85 hover:text-on-primary hover:bg-primary-container/40 px-2 py-1 rounded-sm'
-              }`}
+                }`}
             >
               {link.label}
             </a>
@@ -143,7 +126,7 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
 
           <button
             onClick={onOpenQuoteModal}
-            className="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container font-bold text-xs md:text-sm py-2 md:py-2.5 px-4 md:px-5 rounded-lg hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 cursor-pointer"
+            className="hidden md:inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container font-bold text-sm py-2.5 px-5 rounded-lg hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 cursor-pointer"
           >
             <span className="material-symbols-outlined text-base">request_quote</span>
             Get Quote

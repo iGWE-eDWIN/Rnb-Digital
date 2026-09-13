@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getSiteSettings, getNavigationLinks, DEFAULT_SITE_SETTINGS, DEFAULT_NAVIGATION_LINKS } from '@/lib/cms-data';
 import { SiteSettings, NavigationLink } from '@/types/cms';
+import { LOGO_IMAGE_SRC } from '@/lib/logo-base64';
 
 interface FooterProps {
   settings?: SiteSettings;
@@ -46,23 +47,12 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 px-4 sm:px-6 md:px-8 lg:px-10 py-16 w-full">
         {/* Brand Column */}
         <div className="lg:col-span-2 flex flex-col gap-4">
-          <Link href="#hero" className="flex items-center gap-2.5">
-            {settings.logo_url ? (
-              <img
-                src={settings.logo_url}
-                alt={settings.site_name}
-                className="h-10 w-auto object-contain"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-lg bg-primary-container border border-secondary-container/40 flex items-center justify-center text-secondary-container shadow-md">
-                <span className="material-symbols-outlined text-2xl">
-                  {settings.logo_icon || 'stars'}
-                </span>
-              </div>
-            )}
-            <span className="text-2xl font-extrabold text-secondary-container font-display tracking-tight">
-              {settings.site_name}
-            </span>
+          <Link href="#hero" className="flex items-center group py-0.5">
+            <img
+              src={(settings.logo_url && settings.logo_url.startsWith('http')) ? settings.logo_url : LOGO_IMAGE_SRC}
+              alt={settings.site_name || 'RnB Digitals'}
+              className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+            />
           </Link>
           <p className="text-sm text-on-primary/80 leading-relaxed max-w-sm">
             {settings.footer_description}

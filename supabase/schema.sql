@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
   id TEXT PRIMARY KEY DEFAULT 'global_settings',
   site_name TEXT NOT NULL DEFAULT 'RnB Digitals',
   tagline TEXT NOT NULL DEFAULT 'Premium Print & Branding',
-  logo_url TEXT,
+  logo_url TEXT DEFAULT '/logo.png',
   logo_icon TEXT DEFAULT 'stars',
   announcement_badge TEXT DEFAULT 'Port Harcourt''s #1 Print & Branding Agency',
   hero_title TEXT NOT NULL DEFAULT 'Your Brand Deserves to Be Seen',
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
   contact_address TEXT NOT NULL DEFAULT '177 Ada George Road by Pepperoni Junction, Port Harcourt, Rivers State, Nigeria',
   contact_phone TEXT NOT NULL DEFAULT '+234 816 417 1414',
   contact_whatsapp TEXT NOT NULL DEFAULT '2348164171414',
-  contact_email TEXT NOT NULL DEFAULT 'info@rnbdigitals.com',
+  contact_email TEXT NOT NULL DEFAULT 'rnbdigitals@gmail.com',
   operating_hours TEXT NOT NULL DEFAULT 'Monday – Saturday: 8:00 AM – 6:00 PM (GMT+1)',
   footer_description TEXT DEFAULT 'Port Harcourt''s leading design, industrial printing, custom apparel embroidery, and corporate branding agency. Elevating brand presence with uncompromised precision.',
   footer_copyright TEXT DEFAULT '© RnB Digitals. All Rights Reserved. Premium Print & Digital Solutions.',
@@ -279,7 +279,7 @@ VALUES (
   '177 Ada George Road by Pepperoni Junction, Port Harcourt, Rivers State, Nigeria',
   '+234 816 417 1414',
   '2348164171414',
-  'info@rnbdigitals.com',
+  'rnbdigitals@gmail.com',
   'Monday – Saturday: 8:00 AM – 6:00 PM (GMT+1)'
 )
 ON CONFLICT (id) DO NOTHING;

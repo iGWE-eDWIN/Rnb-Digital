@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { LOGO_IMAGE_SRC } from '@/lib/logo-base64';
 
 export default function AdminLoginPage() {
   const { user, login, isSupabaseLive, loading: authLoading } = useAuth();
@@ -62,8 +63,12 @@ export default function AdminLoginPage() {
       <div className="relative z-10 w-full max-w-md bg-surface rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/10 animate-fade-in">
         {/* Brand Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex w-14 h-14 rounded-2xl bg-primary-container border border-secondary-container/40 items-center justify-center text-secondary-container shadow-lg mb-4">
-            <span className="material-symbols-outlined text-3xl">stars</span>
+          <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-primary-container border border-secondary-container/30 shadow-lg mb-4">
+            <img
+              src={LOGO_IMAGE_SRC}
+              alt="RnB Digitals"
+              className="h-9 w-auto object-contain"
+            />
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-primary-container font-display tracking-tight">
             Admin CMS Portal

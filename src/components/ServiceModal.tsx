@@ -20,35 +20,43 @@ export default function ServiceModal({ service, onClose, onSelectForQuote }: Ser
         aria-modal="true"
       >
         {/* Modal Header Banner */}
-        <div className="relative h-48 sm:h-56 w-full overflow-hidden rounded-t-2xl bg-primary-container">
+        <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden rounded-t-2xl bg-surface-deep flex items-center justify-center">
+          {/* Ambient blurred backdrop so any aspect ratio fills nicely without hard letterbox */}
+          <img
+            src={service.image}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover filter blur-lg opacity-35 scale-110 pointer-events-none"
+          />
+          {/* Crisp un-cropped main image */}
           <img
             src={service.image}
             alt={service.title}
-            className="w-full h-full object-cover opacity-60"
+            className="relative z-10 max-h-full max-w-full object-contain p-4 drop-shadow-2xl"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary-container via-primary-container/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-surface-deep via-surface-deep/20 to-black/30 z-20 pointer-events-none" />
           
           <button
             onClick={onClose}
             aria-label="Close Modal"
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-primary/70 hover:bg-secondary-container hover:text-on-secondary-container text-on-primary flex items-center justify-center transition-colors shadow-md z-10"
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-primary/80 hover:bg-secondary-container hover:text-on-secondary-container text-on-primary flex items-center justify-center transition-colors shadow-md z-30 cursor-pointer"
           >
             <span className="material-symbols-outlined text-xl">close</span>
           </button>
 
-          <div className="absolute bottom-4 left-6 right-6 flex justify-between items-end">
+          <div className="absolute bottom-4 left-6 right-6 flex justify-between items-end z-30">
             <div>
               <span className="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-secondary-container text-on-secondary-container shadow-sm inline-block mb-2">
                 {service.popularFor}
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-on-primary font-display">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-on-primary font-display drop-shadow-md">
                 {service.title}
               </h2>
             </div>
             {service.startingPrice && (
               <div className="text-right hidden sm:block">
-                <span className="text-[11px] text-on-primary/70 block uppercase font-medium">Starting from</span>
-                <span className="text-xl font-bold text-secondary-container">{service.startingPrice}</span>
+                <span className="text-[11px] text-on-primary/80 block uppercase font-medium">Starting from</span>
+                <span className="text-xl font-bold text-secondary-container drop-shadow-md">{service.startingPrice}</span>
               </div>
             )}
           </div>

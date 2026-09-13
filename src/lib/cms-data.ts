@@ -25,7 +25,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   id: 'global_settings',
   site_name: 'RnB Digitals',
   tagline: 'Premium Print & Branding',
-  logo_url: null,
+  logo_url: '/logo.png',
   logo_icon: 'stars',
   announcement_badge: "Port Harcourt's #1 Print & Branding Agency",
   hero_title: 'Your Brand Deserves to Be Seen',
@@ -39,7 +39,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   contact_address: '177 Ada George Road by Pepperoni Junction, Port Harcourt, Rivers State, Nigeria',
   contact_phone: '+234 816 417 1414',
   contact_whatsapp: '2348164171414',
-  contact_email: 'info@rnbdigitals.com',
+  contact_email: 'rnbdigitals@gmail.com',
   operating_hours: 'Monday – Saturday: 8:00 AM – 6:00 PM (GMT+1)',
   footer_description:
     "Port Harcourt's leading design, industrial printing, custom apparel embroidery, and corporate branding agency. Elevating brand presence with uncompromised precision.",
