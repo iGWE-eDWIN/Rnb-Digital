@@ -132,15 +132,6 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
             Get Quote
           </button>
 
-          {/* Admin CMS Quick Portal Link (Discreet) */}
-          <Link
-            href="/admin"
-            className="hidden sm:inline-flex p-2 text-on-primary/60 hover:text-secondary-container rounded-lg transition-colors"
-            title="Admin CMS Portal"
-          >
-            <span className="material-symbols-outlined text-lg">admin_panel_settings</span>
-          </Link>
-
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -169,14 +160,6 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
                 <span className="material-symbols-outlined text-sm">chevron_right</span>
               </a>
             ))}
-            <Link
-              href="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-secondary-container font-bold text-sm py-2 flex items-center justify-between pt-3"
-            >
-              <span>Admin CMS Portal</span>
-              <span className="material-symbols-outlined text-sm">lock</span>
-            </Link>
           </nav>
 
           <div className="pt-4 border-t border-primary-container/60 flex flex-col gap-3">
