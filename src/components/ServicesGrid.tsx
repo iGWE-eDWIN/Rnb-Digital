@@ -56,7 +56,7 @@ export default function ServicesGrid({ onSelectServiceForQuote, services: propSe
             What We Do
           </div>
           <h2 className="text-3xl md:text-5xl font-extrabold text-primary-container tracking-tight mb-5 font-display">
-            Comprehensive Print & Digital Solutions
+            Print, Design & Branding Solutions
           </h2>
           <p className="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
             We bring your brand to life with high-grade industrial materials, flawless precision execution, and state-of-the-art digital technology.
