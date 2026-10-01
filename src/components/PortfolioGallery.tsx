@@ -10,7 +10,11 @@ interface PortfolioGalleryProps {
 }
 
 export default function PortfolioGallery({ items: propItems }: PortfolioGalleryProps) {
-  const [items, setItems] = useState<PortfolioItem[]>(propItems || PORTFOLIO_DATA);
+  const [items, setItems] = useState<PortfolioItem[]>(
+    (propItems || PORTFOLIO_DATA).filter(
+      (item) => !/web|digital/i.test(`${item.category} ${item.categoryLabel} ${item.title} ${item.description} ${item.tags.join(' ')}`)
+    )
+  );
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<PortfolioItem | null>(null);
 
@@ -18,8 +22,10 @@ export default function PortfolioGallery({ items: propItems }: PortfolioGalleryP
     async function load() {
       if (!propItems) {
         const loaded = await getPortfolioItems();
-        if (loaded && loaded.length > 0) {
-          setItems(loaded);
+        if (loaded) {
+          setItems(
+            loaded.filter((item) => !/web|digital/i.test(`${item.category} ${item.categoryLabel} ${item.title} ${item.description} ${item.tags.join(' ')}`))
+          );
         }
       }
     }
@@ -31,7 +37,6 @@ export default function PortfolioGallery({ items: propItems }: PortfolioGalleryP
     { id: 'print', label: 'Large Format & Signs' },
     { id: 'apparel', label: 'Apparel & Uniforms' },
     { id: 'branding', label: 'Branding & Packaging' },
-    { id: 'digital', label: 'Web & Digital' },
   ];
 
   const filteredItems =
@@ -53,7 +58,7 @@ export default function PortfolioGallery({ items: propItems }: PortfolioGalleryP
               Proof of Craftsmanship
             </h2>
             <p className="text-base text-on-surface-variant max-w-xl mt-3">
-              Explore a curated selection of physical prints, executive corporate apparel, luxury packaging, and digital solutions delivered for leading brands.
+              Explore a curated selection of physical prints, executive corporate apparel, and luxury packaging delivered for leading brands.
             </p>
           </div>
 

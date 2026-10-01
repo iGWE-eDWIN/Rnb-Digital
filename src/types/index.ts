@@ -15,7 +15,7 @@ export interface ServiceItem {
 export interface PortfolioItem {
   id: string;
   title: string;
-  category: 'all' | 'print' | 'apparel' | 'branding' | 'digital';
+  category: 'all' | 'print' | 'apparel' | 'branding';
   categoryLabel: string;
   image: string;
   client: string;

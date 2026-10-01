@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
   announcement_badge TEXT DEFAULT 'Port Harcourt''s #1 Print & Branding Agency',
   hero_title TEXT NOT NULL DEFAULT 'Your Brand Deserves to Be Seen',
   hero_subtitle TEXT DEFAULT 'Deserves to Be Seen',
-  hero_description TEXT NOT NULL DEFAULT 'Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact digital solutions for businesses that mean business.',
+  hero_description TEXT NOT NULL DEFAULT 'Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact branding for businesses that mean business.',
   hero_cta1_text TEXT DEFAULT 'Get Instant Quote',
   hero_cta1_link TEXT DEFAULT '#calculator',
   hero_cta2_text TEXT DEFAULT 'View Portfolio',
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
   contact_email TEXT NOT NULL DEFAULT 'rnbdigitals@gmail.com',
   operating_hours TEXT NOT NULL DEFAULT 'Monday – Saturday: 8:00 AM – 6:00 PM (GMT+1)',
   footer_description TEXT DEFAULT 'Port Harcourt''s leading design, industrial printing, custom apparel embroidery, and corporate branding agency. Elevating brand presence with uncompromised precision.',
-  footer_copyright TEXT DEFAULT '© RnB Digitals. All Rights Reserved. Premium Print & Digital Solutions.',
+  footer_copyright TEXT DEFAULT '© RnB Digitals. All Rights Reserved. Premium Print & Branding Solutions.',
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -275,7 +275,7 @@ VALUES (
   'Port Harcourt''s #1 Print & Branding Agency',
   'Your Brand Deserves to Be Seen',
   'Deserves to Be Seen',
-  'Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact digital solutions for businesses that mean business.',
+  'Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact branding for businesses that mean business.',
   '177 Ada George Road by Pepperoni Junction, Port Harcourt, Rivers State, Nigeria',
   '+234 816 417 1414',
   '2348164171414',
@@ -322,14 +322,6 @@ VALUES
     'https://lh3.googleusercontent.com/aida-public/AB6AXuA8uJoRhxw8vOKwVtKKnM4nUs4CQBf67abRyGmrBwTt6PCPHREdWu0Mb39aWyRAiCngpTJU5mPPUYy83vCWDLM9aMnHT6biMjdqAMmQx7xPR1jbuzvWhje7LJBDuOCFXyN2X1ZyIL1Ax7N9taDzXsL27WY7LUW18sGI9BQ0BEVTtwiUorn3Z3vl-5k8MZ3_J-erckw8Mp9LNnsiG582g2OgddGkFBi2V5qza5spg-WCsFAAKLIFTC08Xw',
     'Professionals holding custom branded RnB Digitals merchandise and corporate apparel',
     3
-  ),
-  (
-    'Digital Systems, UI/UX & Web Development',
-    'Modern high-converting websites, web apps, digital marketing & creative business solutions.',
-    'Digital Solutions',
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuD0MZIZuh6aLIS0yHZCcW-3RIyvEI7OahJPpa91hgtWPVl4NQYyNLuoJaBxDyW-VPyGdoH4c9x6f4DBfgQhj2Ko5rfXas2mzivbjKAucGy64B4p37-D5jeubdFQNW6K52_FCDObA9AV0_IBckNk_MEHLloGlumesFf3F3ctWqYKkKDxRJGPRZMNWOhha8NZcSvyCG19utqo6hjem2l6PcnpWM6PdwjhvgfE2znrxr5eJmMK_hUHhsrj8w',
-    'Modern workspace with digital interface dashboards and marketing analytics',
-    4
   )
 ON CONFLICT DO NOTHING;
 
@@ -400,25 +392,11 @@ VALUES
     'Logos, Business Cards & Corporate Collateral',
     'Distinctive corporate identity packages, luxury foil-stamped business cards, letterheads, and presentation collateral.',
     'Your visual identity is the bedrock of customer trust. We design comprehensive brand systems and print them on tactile, high-grade cardstocks that communicate prestige from the very first handshake.',
-    ARRAY['Custom logo design and comprehensive style guide documentation', 'Luxury 600gsm business cards with gold/silver hot foil stamping', 'Matte, velvet soft-touch, and spot UV high-gloss laminations', 'Executive letterheads, presentation folders & branded envelopes', 'Digital-ready vector assets optimized for web, print & video'],
+    ARRAY['Custom logo design and comprehensive style guide documentation', 'Luxury 600gsm business cards with gold/silver hot foil stamping', 'Matte, velvet soft-touch, and spot UV high-gloss laminations', 'Executive letterheads, presentation folders & branded envelopes', 'Print-ready vector assets for consistent brand materials'],
     ARRAY['600gsm Cotton Cardstock', '350gsm Velvet Art Board', 'Linen Texture Paper', 'Metallic Gold/Silver Foil'],
     'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80',
     '₦9,500',
     5
-  ),
-  (
-    'web-development-digital',
-    'Web & Digital Solutions',
-    'digital',
-    'globe',
-    'High-Converting Websites, Web Apps & SEO',
-    'Bespoke digital platforms, e-commerce storefronts, and conversion-optimized websites engineered to turn visitors into paying clients.',
-    'Complement your physical presence with high-performance digital engineering. We build lightning-fast, mobile-first websites and web applications with integrated payment systems, automated inquiry management, and measurable search engine dominance.',
-    ARRAY['Custom responsive design tailored to your exact industry', 'Next.js & modern React development for maximum speed & SEO', 'E-commerce catalogs with instant Paystack/Flutterwave integration', 'Interactive quote calculators and customer inquiry portals', 'High-availability cloud hosting and SSL security setup'],
-    ARRAY['Next.js / React', 'Tailwind CSS', 'PostgreSQL / Supabase', 'Vercel Cloud Edge Infrastructure'],
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    '₦150,000',
-    6
   )
 ON CONFLICT (id) DO NOTHING;
 
@@ -430,7 +408,6 @@ DECLARE
   cat_tissue UUID;
   cat_cards UUID;
   cat_merch UUID;
-  cat_web UUID;
 BEGIN
   -- Large Format Printing
   INSERT INTO public.estimator_categories (name, slug, unit_label, base_rate, min_qty, sort_order)
@@ -491,17 +468,6 @@ BEGIN
     (cat_merch, 'Laser Engraved Metallic Executive Pen', 1500, false, 3),
     (cat_merch, 'Luxury Presentation Gift Box', 2000, false, 4);
 
-  -- Web Development & Digital Presence
-  INSERT INTO public.estimator_categories (name, slug, unit_label, base_rate, min_qty, sort_order)
-  VALUES ('Web Development & Digital Presence', 'web', 'Project Package', 150000, 1, 6)
-  RETURNING id INTO cat_web;
-
-  INSERT INTO public.estimator_options (category_id, name, extra_price, is_default, sort_order)
-  VALUES
-    (cat_web, 'Starter Business Website (4-5 Pages + SEO)', 0, true, 1),
-    (cat_web, 'E-Commerce Store (Payment Gateway + Catalog)', 120000, false, 2),
-    (cat_web, 'Custom Web Application & Client Portal', 250000, false, 3),
-    (cat_web, '3-Month Digital Marketing & Ads Management', 90000, false, 4);
 END $$;
 
 -- Seed Portfolio Items
@@ -556,16 +522,6 @@ VALUES
     'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
     ARRAY['Stage Backdrop', 'Tension Fabric', 'Rollup Banners', 'Exhibition'],
     5
-  ),
-  (
-    'Enterprise Digital Platform & Online Ordering',
-    'digital',
-    'Digital Solutions',
-    'Novatech Ventures',
-    'Custom Next.js web portal with real-time product configurator, quote calculator, and automated order fulfillment workflow.',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    ARRAY['Next.js', 'Web App', 'UI/UX Design', 'Digital Portal'],
-    6
   )
 ON CONFLICT DO NOTHING;
 

@@ -10,11 +10,14 @@ interface QuoteCalculatorProps {
 }
 
 export default function QuoteCalculator({ initialService, categories: propCategories }: QuoteCalculatorProps) {
+  const visibleCategories = (propCategories || DEFAULT_ESTIMATOR_CATEGORIES).filter(
+    (category) => !/web|digital/i.test(`${category.id} ${category.name} ${category.slug} ${(category.options || []).map((option) => option.name).join(' ')}`)
+  );
   const [categories, setCategories] = useState<EstimatorCategory[]>(
-    propCategories || DEFAULT_ESTIMATOR_CATEGORIES
+    visibleCategories
   );
   const [selectedCatId, setSelectedCatId] = useState<string>(
-    propCategories?.[0]?.id || DEFAULT_ESTIMATOR_CATEGORIES[0].id
+    visibleCategories[0]?.id || DEFAULT_ESTIMATOR_CATEGORIES[0].id
   );
 
   const [quantity, setQuantity] = useState<number>(24);
@@ -28,11 +31,14 @@ export default function QuoteCalculator({ initialService, categories: propCatego
     async function load() {
       if (!propCategories) {
         const loaded = await getEstimatorCategories();
-        if (loaded && loaded.length > 0) {
-          setCategories(loaded);
+        const availableCategories = loaded.filter(
+          (category) => !/web|digital/i.test(`${category.id} ${category.name} ${category.slug} ${(category.options || []).map((option) => option.name).join(' ')}`)
+        );
+        if (availableCategories.length > 0) {
+          setCategories(availableCategories);
           // If initialService provided, try to match by name or slug
           if (initialService) {
-            const matched = loaded.find(
+            const matched = availableCategories.find(
               (c) =>
                 c.name.toLowerCase() === initialService.toLowerCase() ||
                 c.slug.toLowerCase() === initialService.toLowerCase()
@@ -47,13 +53,13 @@ export default function QuoteCalculator({ initialService, categories: propCatego
               return;
             }
           }
-          if (!selectedCatId || !loaded.some((c) => c.id === selectedCatId)) {
-            setSelectedCatId(loaded[0].id);
-            setQuantity(loaded[0].min_qty || 1);
-            const defaultOpts = (loaded[0].options || [])
+          if (!selectedCatId || !availableCategories.some((c) => c.id === selectedCatId)) {
+            setSelectedCatId(availableCategories[0].id);
+            setQuantity(availableCategories[0].min_qty || 1);
+            const defaultOpts = (availableCategories[0].options || [])
               .filter((o) => o.is_default && o.is_active)
               .map((o) => o.id);
-            setSelectedOptionIds(defaultOpts.length > 0 ? defaultOpts : (loaded[0].options?.[0] ? [loaded[0].options[0].id] : []));
+            setSelectedOptionIds(defaultOpts.length > 0 ? defaultOpts : (availableCategories[0].options?.[0] ? [availableCategories[0].options[0].id] : []));
           }
         }
       }
@@ -173,7 +179,7 @@ Please let me know how to proceed with placing this order.`;
             Instant Project Price Estimator
           </h2>
           <p className="text-sm md:text-base text-on-surface-variant">
-            Select your service, choose options, and get an immediate estimate for your print or branding project.
+            Select your service, choose options, and get an immediate estimate for your project.
           </p>
         </div>
 

@@ -50,15 +50,5 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     description: 'Seamless 20ft tension-fabric media wall backdrop, high-contrast teardrop banners, and executive wide-base rollup stands.',
     image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80',
     tags: ['Stage Backdrop', 'Tension Fabric', 'Rollup Banners', 'Exhibition']
-  },
-  {
-    id: 'port-6',
-    title: 'Enterprise Digital Platform & Online Ordering',
-    category: 'digital',
-    categoryLabel: 'Digital Solutions',
-    client: 'Novatech Ventures',
-    description: 'Custom Next.js web portal with real-time product configurator, quote calculator, and automated order fulfillment workflow.',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    tags: ['Next.js', 'Web App', 'UI/UX Design', 'Digital Portal']
   }
 ];

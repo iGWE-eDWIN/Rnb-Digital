@@ -10,7 +10,10 @@ interface HeroSlideshowProps {
 }
 
 export default function HeroSlideshow({ onExploreService, slides: propSlides }: HeroSlideshowProps) {
-  const [slides, setSlides] = useState<HeroSlideItem[]>(propSlides || DEFAULT_HERO_SLIDES);
+  const visibleSlides = (propSlides || DEFAULT_HERO_SLIDES).filter(
+    (slide) => !/web|digital/i.test(`${slide.id} ${slide.title} ${slide.subtitle} ${slide.tag}`)
+  );
+  const [slides, setSlides] = useState<HeroSlideItem[]>(visibleSlides);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -24,7 +27,9 @@ export default function HeroSlideshow({ onExploreService, slides: propSlides }: 
     async function load() {
       if (!propSlides) {
         const loaded = await getHeroSlides();
-        const activeOnly = loaded.filter((s) => s.is_active);
+        const activeOnly = loaded.filter(
+          (slide) => slide.is_active && !/web|digital/i.test(`${slide.id} ${slide.title} ${slide.subtitle} ${slide.tag}`)
+        );
         if (activeOnly.length > 0) setSlides(activeOnly);
       }
     }

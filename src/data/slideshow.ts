@@ -24,13 +24,5 @@ export const HERO_SLIDES: SlideshowSlide[] = [
     tag: 'Brand Merchandise',
     image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA8uJoRhxw8vOKwVtKKnM4nUs4CQBf67abRyGmrBwTt6PCPHREdWu0Mb39aWyRAiCngpTJU5mPPUYy83vCWDLM9aMnHT6biMjdqAMmQx7xPR1jbuzvWhje7LJBDuOCFXyN2X1ZyIL1Ax7N9taDzXsL27WY7LUW18sGI9BQ0BEVTtwiUorn3Z3vl-5k8MZ3_J-erckw8Mp9LNnsiG582g2OgddGkFBi2V5qza5spg-WCsFAAKLIFTC08Xw',
     alt: 'Professionals holding custom branded RnB Digitals merchandise and corporate apparel'
-  },
-  {
-    id: 'digital-solutions',
-    title: 'Digital Systems, UI/UX & Web Development',
-    subtitle: 'Modern high-converting websites, web apps, digital marketing & creative business solutions.',
-    tag: 'Digital Solutions',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD0MZIZuh6aLIS0yHZCcW-3RIyvEI7OahJPpa91hgtWPVl4NQYyNLuoJaBxDyW-VPyGdoH4c9x6f4DBfgQhj2Ko5rfXas2mzivbjKAucGy64B4p37-D5jeubdFQNW6K52_FCDObA9AV0_IBckNk_MEHLloGlumesFf3F3ctWqYKkKDxRJGPRZMNWOhha8NZcSvyCG19utqo6hjem2l6PcnpWM6PdwjhvgfE2znrxr5eJmMK_hUHhsrj8w',
-    alt: 'Modern workspace with digital interface dashboards and marketing analytics'
   }
 ];

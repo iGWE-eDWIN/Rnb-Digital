@@ -31,7 +31,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   hero_title: 'Your Brand Deserves to Be Seen',
   hero_subtitle: 'Deserves to Be Seen',
   hero_description:
-    'Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact digital solutions for businesses that mean business.',
+    'Premium wide-format printing, custom apparel embroidery, executive merchandise, and high-impact branding for businesses that mean business.',
   hero_cta1_text: 'Get Instant Quote',
   hero_cta1_link: '#calculator',
   hero_cta2_text: 'View Portfolio',
@@ -43,7 +43,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   operating_hours: 'Monday – Saturday: 8:00 AM – 6:00 PM (GMT+1)',
   footer_description:
     "Port Harcourt's leading design, industrial printing, custom apparel embroidery, and corporate branding agency. Elevating brand presence with uncompromised precision.",
-  footer_copyright: '© RnB Digitals. All Rights Reserved. Premium Print & Digital Solutions.',
+  footer_copyright: '© RnB Digitals. All Rights Reserved. Premium Print & Branding Solutions.',
 };
 
 export const DEFAULT_NAVIGATION_LINKS: NavigationLink[] = [
@@ -146,22 +146,6 @@ export const DEFAULT_ESTIMATOR_CATEGORIES: EstimatorCategory[] = [
       { id: 'opt-m4', category_id: 'est-merch', name: 'Luxury Presentation Gift Box', extra_price: 2000, is_default: false, sort_order: 4, is_active: true },
     ],
   },
-  {
-    id: 'est-web',
-    name: 'Web Development & Digital Presence',
-    slug: 'web',
-    unit_label: 'Project Package',
-    base_rate: 150000,
-    min_qty: 1,
-    sort_order: 6,
-    is_active: true,
-    options: [
-      { id: 'opt-w1', category_id: 'est-web', name: 'Starter Business Website (4-5 Pages + SEO)', extra_price: 0, is_default: true, sort_order: 1, is_active: true },
-      { id: 'opt-w2', category_id: 'est-web', name: 'E-Commerce Store (Payment Gateway + Catalog)', extra_price: 120000, is_default: false, sort_order: 2, is_active: true },
-      { id: 'opt-w3', category_id: 'est-web', name: 'Custom Web Application & Client Portal', extra_price: 250000, is_default: false, sort_order: 3, is_active: true },
-      { id: 'opt-w4', category_id: 'est-web', name: '3-Month Digital Marketing & Ads Management', extra_price: 90000, is_default: false, sort_order: 4, is_active: true },
-    ],
-  },
 ];
 
 export const DEFAULT_ABOUT_PILLARS: AboutPillar[] = [
@@ -230,6 +214,20 @@ function setLocalItem<T>(key: string, value: T): void {
   }
 }
 
+function cleanSiteSettings(settings: SiteSettings): SiteSettings {
+  return {
+    ...settings,
+    hero_description: settings.hero_description.replace(
+      'and high-impact digital solutions',
+      'and high-impact branding'
+    ),
+    footer_copyright: settings.footer_copyright.replace(
+      'Premium Print & Digital Solutions',
+      'Premium Print & Branding Solutions'
+    ),
+  };
+}
+
 // ==============================================================================
 // CMS DATA ACCESS METHODS
 // ==============================================================================
@@ -244,12 +242,12 @@ export async function getSiteSettings(): Promise<SiteSettings> {
         .select('*')
         .eq('id', 'global_settings')
         .single();
-      if (!error && data) return data as SiteSettings;
+      if (!error && data) return cleanSiteSettings(data as SiteSettings);
     } catch (e) {
       console.warn('Supabase getSiteSettings error, falling back:', e);
     }
   }
-  return getLocalItem<SiteSettings>('site_settings', DEFAULT_SITE_SETTINGS);
+  return cleanSiteSettings(getLocalItem<SiteSettings>('site_settings', DEFAULT_SITE_SETTINGS));
 }
 
 export async function updateSiteSettings(settings: Partial<SiteSettings>): Promise<SiteSettings> {
@@ -259,23 +257,24 @@ export async function updateSiteSettings(settings: Partial<SiteSettings>): Promi
     ...settings,
     updated_at: new Date().toISOString(),
   };
+  const cleaned = cleanSiteSettings(updated);
 
   const supabase = getSupabaseClient();
   if (supabase && isSupabaseConfigured()) {
     try {
       const { data, error } = await supabase
         .from('site_settings')
-        .upsert(updated)
+        .upsert(cleaned)
         .select()
         .single();
-      if (!error && data) return data as SiteSettings;
+      if (!error && data) return cleanSiteSettings(data as SiteSettings);
     } catch (e) {
       console.warn('Supabase updateSiteSettings error:', e);
     }
   }
 
-  setLocalItem('site_settings', updated);
-  return updated;
+  setLocalItem('site_settings', cleaned);
+  return cleaned;
 }
 
 // 2. Navigation Links

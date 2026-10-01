@@ -12,7 +12,11 @@ interface ServicesGridProps {
 }
 
 export default function ServicesGrid({ onSelectServiceForQuote, services: propServices }: ServicesGridProps) {
-  const [services, setServices] = useState<ServiceItem[]>(propServices || SERVICES_DATA);
+  const [services, setServices] = useState<ServiceItem[]>(
+    (propServices || SERVICES_DATA).filter(
+      (service) => !/web|digital/i.test(`${service.id} ${service.category} ${service.title} ${service.popularFor} ${service.shortDesc} ${service.fullDesc} ${service.features.join(' ')}`)
+    )
+  );
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
 
   useEffect(() => {
@@ -20,7 +24,9 @@ export default function ServicesGrid({ onSelectServiceForQuote, services: propSe
       if (!propServices) {
         const loaded = await getServices();
         if (loaded && loaded.length > 0) {
-          setServices(loaded);
+          setServices(
+            loaded.filter((service) => !/web|digital/i.test(`${service.id} ${service.category} ${service.title} ${service.popularFor} ${service.shortDesc} ${service.fullDesc} ${service.features.join(' ')}`))
+          );
         }
       }
     }
@@ -59,7 +65,7 @@ export default function ServicesGrid({ onSelectServiceForQuote, services: propSe
             Print, Design & Branding Solutions
           </h2>
           <p className="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-            We bring your brand to life with high-grade industrial materials, flawless precision execution, and state-of-the-art digital technology.
+            We bring your brand to life with high-grade materials, precise craftsmanship, and dependable production.
           </p>
         </div>
 

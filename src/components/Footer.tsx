@@ -16,8 +16,6 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
   const [navLinks, setNavLinks] = useState<NavigationLink[]>(
     (propNav || DEFAULT_NAVIGATION_LINKS).filter((l) => l.is_footer && l.is_active && l.href !== '#store')
   );
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
 
   useEffect(() => {
     async function load() {
@@ -35,18 +33,10 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
     load();
   }, [propSettings, propNav]);
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail('');
-    }
-  };
-
   return (
     <footer className="bg-surface-deep text-on-primary border-t border-outline-variant/20">
       {/* Top Footer Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 px-4 sm:px-6 md:px-8 lg:px-10 py-16 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 px-4 sm:px-6 md:px-8 lg:px-10 py-16 w-full">
         {/* Brand Column */}
         <div className="lg:col-span-2 flex flex-col gap-4">
           <Link href="#hero" className="flex items-center group py-0.5">
@@ -91,9 +81,6 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
           <a href="#services" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
             Brand Identity & Stationery
           </a>
-          <a href="#services" className="text-xs sm:text-sm text-on-primary/70 hover:text-secondary-container transition-colors">
-            Web & Digital Solutions
-          </a>
         </div>
 
         {/* Quick Links from Navigation */}
@@ -112,51 +99,6 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
           ))}
         </div>
 
-        {/* Newsletter & Direct Order */}
-        <div className="flex flex-col gap-4">
-          <h4 className="font-bold text-sm text-on-primary uppercase tracking-wider mb-1 text-secondary-container">
-            Stay Connected
-          </h4>
-          <p className="text-xs text-on-primary/70 leading-relaxed">
-            Subscribe for seasonal discounts, bulk print offers, and branding insights.
-          </p>
-
-          {subscribed ? (
-            <div className="bg-primary-container text-secondary-container p-3 rounded-lg text-xs font-bold text-center border border-secondary-container/30">
-              ✓ Subscribed Successfully!
-            </div>
-          ) : (
-            <form onSubmit={handleSubscribe} className="flex">
-              <input
-                type="email"
-                required
-                placeholder="Enter email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-surface-container-highest/15 border border-white/10 text-on-primary placeholder:text-on-primary/40 focus:ring-2 focus:ring-secondary-container rounded-l-xl px-3 py-2.5 w-full text-xs outline-none"
-              />
-              <button
-                type="submit"
-                aria-label="Subscribe"
-                className="bg-secondary-container text-on-secondary-container px-4 py-2.5 rounded-r-xl hover:bg-secondary-fixed transition-colors flex items-center justify-center font-bold"
-              >
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </button>
-            </form>
-          )}
-
-          <div className="pt-2">
-            <a
-              href={`https://wa.me/${settings.contact_whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-secondary-container font-semibold hover:underline"
-            >
-              <span>Instant WhatsApp Inquiry</span>
-              <span className="material-symbols-outlined text-xs">open_in_new</span>
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* Copyright Bottom Bar */}

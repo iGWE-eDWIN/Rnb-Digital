@@ -90,29 +90,10 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Velvet-touch business cards with metallic foil & gilded edges',
       'Multi-page corporate profiles, annual reports & magazines',
       'High-impact event flyers, security-coded tickets & invitations',
-      'Digital asset kits for social media and marketing campaigns'
+      'Print-ready brand assets for consistent marketing materials'
     ],
     materials: ['600gsm Triplex Card', 'Velvet Soft-Touch Lamination', 'Metallic Foil', 'Textured Linen Paper'],
     image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80',
     startingPrice: '₦25,000'
-  },
-  {
-    id: 'web-digital-solutions',
-    title: 'Web Development & Digital Marketing',
-    category: 'digital',
-    iconName: 'globe',
-    popularFor: 'Responsive Websites, E-Commerce & SEO Campaigns',
-    shortDesc: 'Fast, search-optimized websites, web applications, targeted ad campaigns, and professional video editing.',
-    fullDesc: 'Bridge physical and digital dominance. We build lightning-fast, conversion-driven websites and execute targeted digital marketing strategies that turn online traffic into loyal, paying clients.',
-    features: [
-      'Modern Next.js & React responsive websites & web apps',
-      'Full e-commerce store setup with secure payment gateway integration',
-      'Search Engine Optimization (SEO) & Google My Business dominance',
-      'Targeted Meta & Google Ad campaign management',
-      'High-retention commercial video editing & motion graphics'
-    ],
-    materials: ['Next.js / React', 'Tailwind CSS', 'PostgreSQL / Cloud DB', 'Google Ads / Meta Ads'],
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
-    startingPrice: '₦150,000'
   }
 ];

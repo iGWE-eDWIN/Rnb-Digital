@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'RnB Digitals - Premium Print, Branding & Digital Solutions | Port Harcourt, Nigeria',
+  title: 'RnB Digitals - Premium Print & Branding | Port Harcourt, Nigeria',
   description:
-    'RnB Digitals is Port Harcourt’s premier branding, large format printing, custom apparel embroidery, branded merchandise, and digital web development agency. Quality that elevates your brand.',
+    'RnB Digitals is Port Harcourt’s premier provider of branding, large format printing, custom apparel embroidery, and branded merchandise. Quality that elevates your brand.',
   keywords: [
     'RnB Digitals',
     'Port Harcourt Printing Press',
@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     'Branded Merchandise Port Harcourt',
     'Branded Wrapping Tissue Paper',
     'Logo Design Nigeria',
-    'Web Development Port Harcourt',
   ],
   authors: [{ name: 'RnB Digitals' }],
   openGraph: {

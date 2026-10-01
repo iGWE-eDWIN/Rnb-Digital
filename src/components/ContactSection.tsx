@@ -229,7 +229,6 @@ export default function ContactSection({ settings: propSettings }: ContactSectio
                       <option value="Branded Merchandise">Branded Corporate Merchandise</option>
                       <option value="Wrapping Tissue Paper">Branded Wrapping Tissue Paper</option>
                       <option value="Brand Identity & Stationery">Brand Identity & Stationery</option>
-                      <option value="Web & Digital Solutions">Web & Digital Solutions</option>
                     </select>
                   </div>
                 </div>

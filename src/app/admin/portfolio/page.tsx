@@ -257,7 +257,6 @@ export default function AdminPortfolioPage() {
                     <option value="print">Large Format & Signs</option>
                     <option value="apparel">Apparel & Uniforms</option>
                     <option value="branding">Branding & Packaging</option>
-                    <option value="digital">Web & Digital</option>
                   </select>
                 </div>
 

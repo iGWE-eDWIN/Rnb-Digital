@@ -278,7 +278,7 @@ export default function AdminServicesPage() {
                         category: e.target.value,
                       })
                     }
-                    placeholder="e.g. Print, Branding, Packaging, Digital"
+                    placeholder="e.g. Print, Branding, Packaging"
                     className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
                   />
                 </div>
