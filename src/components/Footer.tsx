@@ -21,7 +21,9 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
 
   useEffect(() => {
     async function load() {
-      if (!propSettings) {
+      if (propSettings) {
+        setSettings(propSettings);
+      } else {
         const loaded = await getSiteSettings();
         if (loaded) setSettings(loaded);
       }
