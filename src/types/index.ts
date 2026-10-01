@@ -9,7 +9,7 @@ export interface ServiceItem {
   popularFor: string;
   image: string;
   startingPrice?: string;
-  category: 'print' | 'apparel' | 'merchandise' | 'branding' | 'digital' | 'packaging';
+  category: string;
 }
 
 export interface PortfolioItem {

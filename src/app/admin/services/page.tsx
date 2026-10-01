@@ -269,23 +269,18 @@ export default function AdminServicesPage() {
                   <label className="block font-bold uppercase tracking-wider text-primary-container mb-1">
                     Category Tag
                   </label>
-                  <select
-                    value={editingService.category || 'print'}
+                  <input
+                    type="text"
+                    value={editingService.category || ''}
                     onChange={(e) =>
                       setEditingService({
                         ...editingService,
-                        category: e.target.value as any,
+                        category: e.target.value,
                       })
                     }
+                    placeholder="e.g. Print, Branding, Packaging, Digital"
                     className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
-                  >
-                    <option value="print">Large Format / Print</option>
-                    <option value="apparel">Custom Apparel & Embroidery</option>
-                    <option value="merchandise">Branded Merchandise</option>
-                    <option value="packaging">Packaging & Tissue Paper</option>
-                    <option value="branding">Brand Identity & Stationery</option>
-                    <option value="digital">Web & Digital Solutions</option>
-                  </select>
+                  />
                 </div>
               </div>
 
