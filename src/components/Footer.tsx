@@ -14,7 +14,7 @@ interface FooterProps {
 export default function Footer({ settings: propSettings, navigationLinks: propNav }: FooterProps) {
   const [settings, setSettings] = useState<SiteSettings>(propSettings || DEFAULT_SITE_SETTINGS);
   const [navLinks, setNavLinks] = useState<NavigationLink[]>(
-    propNav || DEFAULT_NAVIGATION_LINKS.filter((l) => l.is_footer && l.is_active)
+    (propNav || DEFAULT_NAVIGATION_LINKS).filter((l) => l.is_footer && l.is_active && l.href !== '#store')
   );
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -27,7 +27,7 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
       }
       if (!propNav) {
         const loadedNav = await getNavigationLinks();
-        if (loadedNav) setNavLinks(loadedNav.filter((l) => l.is_footer && l.is_active));
+        if (loadedNav) setNavLinks(loadedNav.filter((l) => l.is_footer && l.is_active && l.href !== '#store'));
       }
     }
     load();

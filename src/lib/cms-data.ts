@@ -50,7 +50,6 @@ export const DEFAULT_NAVIGATION_LINKS: NavigationLink[] = [
   { id: 'nav-1', label: 'Home', href: '#hero', sort_order: 1, is_header: true, is_footer: true, is_active: true },
   { id: 'nav-2', label: 'Services', href: '#services', sort_order: 2, is_header: true, is_footer: true, is_active: true },
   { id: 'nav-3', label: 'Portfolio', href: '#portfolio', sort_order: 3, is_header: true, is_footer: true, is_active: true },
-  { id: 'nav-4', label: 'Store', href: '#store', sort_order: 4, is_header: true, is_footer: true, is_active: true },
   { id: 'nav-5', label: 'Estimator', href: '#calculator', sort_order: 5, is_header: true, is_footer: true, is_active: true },
   { id: 'nav-6', label: 'About', href: '#about', sort_order: 6, is_header: true, is_footer: true, is_active: true },
   { id: 'nav-7', label: 'Contact', href: '#contact', sort_order: 7, is_header: true, is_footer: true, is_active: true },
@@ -410,7 +409,7 @@ export async function getServices(): Promise<ServiceItem[]> {
         .from('services')
         .select('*')
         .order('sort_order', { ascending: true });
-      if (!error && data && data.length > 0) {
+      if (!error && data) {
         return data.map((d) => ({
           id: d.id,
           title: d.title,
@@ -684,7 +683,12 @@ export async function savePortfolioItem(item: PortfolioItem): Promise<PortfolioI
   };
 
   if (supabase && isSupabaseConfigured()) {
-    await supabase.from('portfolio_items').upsert(payload);
+    const { error } = await supabase.from('portfolio_items').upsert({
+      ...payload,
+      is_active: true,
+      sort_order: currentList.length,
+    });
+    if (error) throw error;
   }
 
   const existingIdx = currentList.findIndex((p) => p.id === item.id);

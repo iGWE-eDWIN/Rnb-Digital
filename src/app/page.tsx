@@ -6,7 +6,6 @@ import HeroSlideshow from '@/components/HeroSlideshow';
 import ServicesGrid from '@/components/ServicesGrid';
 import QuoteCalculator from '@/components/QuoteCalculator';
 import PortfolioGallery from '@/components/PortfolioGallery';
-import StorePreview from '@/components/StorePreview';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import Testimonials from '@/components/Testimonials';
 import ContactSection from '@/components/ContactSection';
@@ -117,9 +116,6 @@ export default function Home() {
 
         {/* ===================== PORTFOLIO SHOWCASE ===================== */}
         <PortfolioGallery />
-
-        {/* ===================== STORE / CATALOG PREVIEW ===================== */}
-        <StorePreview />
 
         {/* ===================== WHY CHOOSE US ===================== */}
         <WhyChooseUs />

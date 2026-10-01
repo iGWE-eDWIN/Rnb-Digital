@@ -44,10 +44,9 @@ export default function AdminPortfolioPage() {
       setTagsInput((item.tags || []).join(', '));
     } else {
       setEditingItem({
-        id: `port-${Date.now()}`,
+        id: crypto.randomUUID(),
         title: '',
-        category: 'print',
-        categoryLabel: 'Large Format',
+        categoryLabel: '',
         client: '',
         description: '',
         image: '',
@@ -59,8 +58,8 @@ export default function AdminPortfolioPage() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!editingItem || !editingItem.title || !editingItem.id) {
-      addToast('error', 'Please provide project title');
+    if (!editingItem || !editingItem.title || !editingItem.id || !editingItem.category || !editingItem.categoryLabel?.trim()) {
+      addToast('error', 'Please provide a project title, category, and category label');
       return;
     }
 
@@ -70,26 +69,17 @@ export default function AdminPortfolioPage() {
         .map((t) => t.trim())
         .filter(Boolean);
 
-      const categoryLabelMap: Record<string, string> = {
-        print: 'Large Format',
-        apparel: 'Custom Apparel',
-        branding: 'Branding & Packaging',
-        digital: 'Digital Solutions',
-        all: 'General',
-      };
-
       const toSave: PortfolioItem = {
         id: editingItem.id,
         title: editingItem.title,
-        category: editingItem.category || 'print',
-        categoryLabel:
-          editingItem.categoryLabel || categoryLabelMap[editingItem.category || 'print'] || 'Featured',
+        category: editingItem.category,
+        categoryLabel: editingItem.categoryLabel.trim(),
         client: editingItem.client || 'Client Confidential',
         description: editingItem.description || '',
         image:
           editingItem.image ||
           'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80',
-        tags: tags.length > 0 ? tags : ['Branding', 'Print'],
+        tags,
       };
 
       await savePortfolioItem(toSave);
@@ -254,7 +244,7 @@ export default function AdminPortfolioPage() {
                     Category Filter
                   </label>
                   <select
-                    value={editingItem.category || 'print'}
+                    value={editingItem.category || ''}
                     onChange={(e) =>
                       setEditingItem({
                         ...editingItem,
@@ -263,6 +253,7 @@ export default function AdminPortfolioPage() {
                     }
                     className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
                   >
+                    <option value="" disabled>Select a category</option>
                     <option value="print">Large Format & Signs</option>
                     <option value="apparel">Apparel & Uniforms</option>
                     <option value="branding">Branding & Packaging</option>
@@ -282,6 +273,20 @@ export default function AdminPortfolioPage() {
                     className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block font-bold uppercase tracking-wider text-primary-container mb-1">
+                  Category Label
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={editingItem.categoryLabel || ''}
+                  onChange={(e) => setEditingItem({ ...editingItem, categoryLabel: e.target.value })}
+                  placeholder="e.g. Large Format & Signs"
+                  className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
+                />
               </div>
 
               <div>

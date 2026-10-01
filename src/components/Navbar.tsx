@@ -17,7 +17,7 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
   const [scrolled, setScrolled] = useState(false);
   const [settings, setSettings] = useState<SiteSettings>(siteSettings || DEFAULT_SITE_SETTINGS);
   const [links, setLinks] = useState<NavigationLink[]>(
-    navigation || DEFAULT_NAVIGATION_LINKS.filter((l) => l.is_header && l.is_active)
+    navigation || DEFAULT_NAVIGATION_LINKS.filter((l) => l.is_header && l.is_active && l.href !== '#store')
   );
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
       }
       if (!navigation) {
         const n = await getNavigationLinks();
-        setLinks(n.filter((l) => l.is_header && l.is_active));
+        setLinks(n.filter((l) => l.is_header && l.is_active && l.href !== '#store'));
       }
     }
     loadNavData();
@@ -116,14 +116,6 @@ export default function Navbar({ onOpenQuoteModal, siteSettings, navigation }: N
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <a
-            href="#store"
-            className="hidden lg:inline-flex items-center gap-1.5 text-on-primary bg-primary-container hover:bg-primary-container/80 border border-on-primary-container/30 text-xs font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
-          >
-            <span className="material-symbols-outlined text-base text-secondary-container">shopping_bag</span>
-            Store Catalog
-          </a>
-
           <button
             onClick={onOpenQuoteModal}
             className="hidden md:inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container font-bold text-sm py-2.5 px-5 rounded-lg hover:bg-secondary-fixed transition-all duration-300 shadow-md hover:shadow-gold-glow hover:-translate-y-0.5 cursor-pointer"
