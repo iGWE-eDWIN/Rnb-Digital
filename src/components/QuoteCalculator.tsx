@@ -9,6 +9,11 @@ interface QuoteCalculatorProps {
   categories?: EstimatorCategory[];
 }
 
+const isAreaBasedCategory = (category: EstimatorCategory) =>
+  category.slug.toLowerCase() === 'banner' ||
+  /large format printing/i.test(category.name) ||
+  /square feet|sq\.?\s*ft/i.test(category.unit_label);
+
 export default function QuoteCalculator({ initialService, categories: propCategories }: QuoteCalculatorProps) {
   const visibleCategories = (propCategories || DEFAULT_ESTIMATOR_CATEGORIES).filter(
     (category) => !/web|digital/i.test(`${category.id} ${category.name} ${category.slug} ${(category.options || []).map((option) => option.name).join(' ')}`)
@@ -21,6 +26,8 @@ export default function QuoteCalculator({ initialService, categories: propCatego
   );
 
   const [quantity, setQuantity] = useState<number>(24);
+  const [width, setWidth] = useState<number>(1);
+  const [height, setHeight] = useState<number>(1);
   const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
@@ -88,6 +95,9 @@ export default function QuoteCalculator({ initialService, categories: propCatego
 
   const activeCategory =
     categories.find((c) => c.id === selectedCatId) || categories[0] || DEFAULT_ESTIMATOR_CATEGORIES[0];
+  const areaBased = isAreaBasedCategory(activeCategory);
+  const area = Number((width * height).toFixed(2));
+  const pricingQuantity = areaBased ? area : quantity;
 
   const handleCategoryChange = (catId: string) => {
     setSelectedCatId(catId);
@@ -119,7 +129,7 @@ export default function QuoteCalculator({ initialService, categories: propCatego
   }, 0);
 
   const baseRate = Number(activeCategory.base_rate) || 0;
-  const estimatedTotal = (baseRate + optionsExtraTotal) * quantity;
+  const estimatedTotal = (baseRate + optionsExtraTotal) * pricingQuantity;
   const formattedTotal = new Intl.NumberFormat('en-NG', {
     style: 'currency',
     currency: 'NGN',
@@ -134,7 +144,7 @@ export default function QuoteCalculator({ initialService, categories: propCatego
 
     const text = `Hello RnB Digitals! I used your online estimator for:
 - Service: ${activeCategory.name}
-- Quantity: ${quantity} ${activeCategory.unit_label}
+  - ${areaBased ? `Size: ${width} ft x ${height} ft\n- Area: ${area} sq ft` : `Quantity: ${quantity} ${activeCategory.unit_label}`}
 - Specifications: ${selectedOptionNames || 'Standard'}
 - Estimated Total: ${formattedTotal}
 ${customerName ? `- Name: ${customerName}` : ''}
@@ -156,9 +166,11 @@ Please let me know how to proceed with placing this order.`;
         name: customerName || 'Website Estimator Visitor',
         phone: customerPhone || '+234 816 417 1414',
         service: activeCategory.name,
-        quantity: `${quantity} ${activeCategory.unit_label}`,
+        quantity: areaBased
+          ? `${width} ft x ${height} ft (${area} sq ft)`
+          : `${quantity} ${activeCategory.unit_label}`,
         estimated_total: formattedTotal,
-        message: `Specifications: ${selectedOptionNames || 'Standard'}`,
+        message: `${areaBased ? `Size: ${width} ft x ${height} ft. Area: ${area} sq ft. ` : ''}Specifications: ${selectedOptionNames || 'Standard'}`,
       });
       setInquirySaved(true);
     } catch (e) {
@@ -179,7 +191,7 @@ Please let me know how to proceed with placing this order.`;
             Instant Project Price Estimator
           </h2>
           <p className="text-sm md:text-base text-on-surface-variant">
-            Select your service, choose options, and get an immediate estimate for your project.
+            Choose a service and options. For large format printing, enter the width and height in feet. For example, 1 ft × 4 ft = 4 sq ft, then multiply by the rate per square foot.
           </p>
         </div>
 
@@ -261,41 +273,72 @@ Please let me know how to proceed with placing this order.`;
             {/* Right Column: Quantity & Instant Summary */}
             <div className="flex flex-col justify-between bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-primary-container mb-2">
-                  3. Quantity ({activeCategory.unit_label})
-                </label>
-                <div className="flex items-center gap-3 mb-6">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setQuantity(
-                        Math.max(activeCategory.min_qty || 1, quantity - (activeCategory.slug === 'banner' ? 10 : 5))
-                      )
-                    }
-                    className="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary-container font-bold text-lg flex items-center justify-center border border-outline-variant/30 cursor-pointer"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    min={activeCategory.min_qty || 1}
-                    value={quantity}
-                    onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-24 text-center font-bold text-lg py-2 border rounded-lg bg-surface border-outline-variant/50 focus:ring-2 focus:ring-secondary-container"
-                  />
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setQuantity(quantity + (activeCategory.slug === 'banner' ? 10 : 5))
-                    }
-                    className="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary-container font-bold text-lg flex items-center justify-center border border-outline-variant/30 cursor-pointer"
-                  >
-                    +
-                  </button>
-                  <span className="text-xs text-on-surface-variant">
-                    Min: {activeCategory.min_qty || 1}
-                  </span>
-                </div>
+                {areaBased ? (
+                  <>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-primary-container mb-2">
+                      3. Finished Size (feet)
+                    </label>
+                    <div className="grid grid-cols-2 gap-3 mb-2">
+                      <label className="text-xs text-on-surface-variant">
+                        Width
+                        <input
+                          type="number"
+                          min="0.1"
+                          step="0.1"
+                          value={width}
+                          onChange={(e) => setWidth(Math.max(0.1, Number(e.target.value) || 0.1))}
+                          className="mt-1 w-full text-center font-bold text-lg py-2 border rounded-lg bg-surface border-outline-variant/50 focus:ring-2 focus:ring-secondary-container"
+                        />
+                      </label>
+                      <label className="text-xs text-on-surface-variant">
+                        Height
+                        <input
+                          type="number"
+                          min="0.1"
+                          step="0.1"
+                          value={height}
+                          onChange={(e) => setHeight(Math.max(0.1, Number(e.target.value) || 0.1))}
+                          className="mt-1 w-full text-center font-bold text-lg py-2 border rounded-lg bg-surface border-outline-variant/50 focus:ring-2 focus:ring-secondary-container"
+                        />
+                      </label>
+                    </div>
+                    <p className="text-xs text-on-surface-variant mb-6">
+                      {width} ft × {height} ft = <strong>{area} sq ft</strong>. At ₦{baseRate.toLocaleString()} per sq ft, the base estimate is ₦{(area * baseRate).toLocaleString()}.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-primary-container mb-2">
+                      3. Quantity ({activeCategory.unit_label})
+                    </label>
+                    <div className="flex items-center gap-3 mb-6">
+                      <button
+                        type="button"
+                        onClick={() => setQuantity(Math.max(activeCategory.min_qty || 1, quantity - 5))}
+                        className="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary-container font-bold text-lg flex items-center justify-center border border-outline-variant/30 cursor-pointer"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        min={activeCategory.min_qty || 1}
+                        value={quantity}
+                        onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                        className="w-24 text-center font-bold text-lg py-2 border rounded-lg bg-surface border-outline-variant/50 focus:ring-2 focus:ring-secondary-container"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setQuantity(quantity + 5)}
+                        className="w-10 h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary-container font-bold text-lg flex items-center justify-center border border-outline-variant/30 cursor-pointer"
+                      >
+                        +
+                      </button>
+                      <span className="text-xs text-on-surface-variant">
+                        Min: {activeCategory.min_qty || 1}
+                      </span>
+                    </div>
+                  </>
+                )}
 
                 {/* Estimate Result Box */}
                 <div className="bg-primary-container text-on-primary p-5 rounded-xl mb-4 shadow-md">

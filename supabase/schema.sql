@@ -411,7 +411,7 @@ DECLARE
 BEGIN
   -- Large Format Printing
   INSERT INTO public.estimator_categories (name, slug, unit_label, base_rate, min_qty, sort_order)
-  VALUES ('Large Format Printing', 'banner', 'Square Feet / Units', 350, 24, 1)
+  VALUES ('Large Format Printing', 'banner', 'Square Feet', 350, 1, 1)
   RETURNING id INTO cat_banner;
 
   INSERT INTO public.estimator_options (category_id, name, extra_price, is_default, sort_order)

@@ -12,6 +12,11 @@ import { EstimatorCategory, EstimatorOption } from '@/types/cms';
 import ConfirmModal from '@/components/admin/ConfirmModal';
 import Toast, { ToastMessage } from '@/components/admin/Toast';
 
+const isAreaBasedCategory = (category: Partial<EstimatorCategory>) =>
+  category.slug?.toLowerCase() === 'banner' ||
+  /large format printing/i.test(category.name || '') ||
+  /square feet|sq\.?\s*ft/i.test(category.unit_label || '');
+
 export default function AdminEstimatorPage() {
   const [categories, setCategories] = useState<EstimatorCategory[]>([]);
   const [selectedCatId, setSelectedCatId] = useState<string>('');
@@ -66,9 +71,9 @@ export default function AdminEstimatorPage() {
         id: editingCategory.id,
         name: editingCategory.name,
         slug: editingCategory.slug || editingCategory.name.toLowerCase().replace(/[^a-z0-9]/g, '-'),
-        unit_label: editingCategory.unit_label || 'Units',
+        unit_label: isAreaBasedCategory(editingCategory) ? 'Square Feet' : editingCategory.unit_label || 'Units',
         base_rate: Number(editingCategory.base_rate) || 0,
-        min_qty: Number(editingCategory.min_qty) || 1,
+        min_qty: isAreaBasedCategory(editingCategory) ? 1 : Number(editingCategory.min_qty) || 1,
         sort_order: editingCategory.sort_order,
         is_active: editingCategory.is_active ?? true,
       });
@@ -153,7 +158,7 @@ export default function AdminEstimatorPage() {
             Project Price Estimator Management
           </h2>
           <p className="text-xs text-on-surface-variant mt-0.5">
-            Configure service categories, base unit prices, minimum quantities, and add-on finishings. Changes update immediately on the public website without code deployment.
+            Configure service rates and add-on finishings. Large Format Printing is priced per square foot: customer width × height gives the billable area, then area × rate gives the estimate.
           </p>
         </div>
 
@@ -163,7 +168,7 @@ export default function AdminEstimatorPage() {
             setEditingCategory({
               name: '',
               slug: '',
-              unit_label: 'Square Feet / Units',
+                  unit_label: 'Units',
               base_rate: 1000,
               min_qty: 1,
               sort_order: categories.length + 1,
@@ -198,7 +203,7 @@ export default function AdminEstimatorPage() {
               />
               <span>{cat.name}</span>
               <span className="text-[10px] bg-black/20 text-white px-1.5 py-0.2 rounded-md">
-                ₦{Number(cat.base_rate).toLocaleString()}
+                ₦{Number(cat.base_rate).toLocaleString()}{isAreaBasedCategory(cat) ? ' / sq ft' : ''}
               </span>
             </button>
           );
@@ -238,19 +243,19 @@ export default function AdminEstimatorPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-surface-container-low p-3 rounded-xl border border-outline-variant/30">
                     <span className="text-[10px] uppercase font-bold text-on-surface-variant block">
-                      Base Rate
+                      {isAreaBasedCategory(activeCategory) ? 'Rate per Square Foot' : 'Base Rate'}
                     </span>
                     <div className="text-base font-extrabold text-primary-container mt-1">
-                      ₦{Number(activeCategory.base_rate).toLocaleString()}
+                      ₦{Number(activeCategory.base_rate).toLocaleString()}{isAreaBasedCategory(activeCategory) ? ' / sq ft' : ''}
                     </div>
                   </div>
 
                   <div className="bg-surface-container-low p-3 rounded-xl border border-outline-variant/30">
                     <span className="text-[10px] uppercase font-bold text-on-surface-variant block">
-                      Min Quantity
+                      {isAreaBasedCategory(activeCategory) ? 'Pricing Unit' : 'Min Quantity'}
                     </span>
                     <div className="text-base font-extrabold text-primary-container mt-1">
-                      {activeCategory.min_qty}
+                      {isAreaBasedCategory(activeCategory) ? 'Square Feet' : activeCategory.min_qty}
                     </div>
                   </div>
                 </div>
@@ -296,7 +301,9 @@ export default function AdminEstimatorPage() {
                   Specifications & Add-on Finishing Options
                 </h3>
                 <p className="text-xs text-on-surface-variant mt-0.5">
-                  Options that clients can select with individual extra charges (e.g. foil, hemming, stands).
+                  {isAreaBasedCategory(activeCategory)
+                    ? 'For Large Format Printing, option extra rates are added to the base rate per square foot (e.g. foil, hemming, stands).'
+                    : 'Options that clients can select with individual extra charges (e.g. foil, hemming, stands).'}
                 </p>
               </div>
 
@@ -451,11 +458,13 @@ export default function AdminEstimatorPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block font-bold uppercase tracking-wider text-primary-container mb-1">
-                    Base Rate (₦)
+                    {isAreaBasedCategory(editingCategory) ? 'Rate per Square Foot (₦)' : 'Base Rate (₦)'}
                   </label>
                   <input
                     type="number"
                     required
+                    min="0"
+                    step="any"
                     value={editingCategory.base_rate ?? 0}
                     onChange={(e) =>
                       setEditingCategory({
@@ -467,7 +476,7 @@ export default function AdminEstimatorPage() {
                   />
                 </div>
 
-                <div>
+                {!isAreaBasedCategory(editingCategory) && <div>
                   <label className="block font-bold uppercase tracking-wider text-primary-container mb-1">
                     Min Quantity
                   </label>
@@ -483,7 +492,7 @@ export default function AdminEstimatorPage() {
                     }
                     className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
                   />
-                </div>
+                </div>}
               </div>
 
               <div>
@@ -497,7 +506,7 @@ export default function AdminEstimatorPage() {
                   onChange={(e) =>
                     setEditingCategory({ ...editingCategory, unit_label: e.target.value })
                   }
-                  placeholder="e.g. Square Feet / Units, Shirts, Packs"
+                  placeholder="e.g. Square Feet, Shirts, Packs"
                   className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-3 py-2 text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
                 />
               </div>
@@ -548,7 +557,7 @@ export default function AdminEstimatorPage() {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block font-bold uppercase tracking-wider text-primary-container mb-1">
-                    Extra Price (₦)
+                    {activeCategory && isAreaBasedCategory(activeCategory) ? 'Extra Rate per Sq Ft (₦)' : 'Extra Price (₦)'}
                   </label>
                   <input
                     type="number"

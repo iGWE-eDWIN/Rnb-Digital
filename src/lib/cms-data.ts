@@ -71,9 +71,9 @@ export const DEFAULT_ESTIMATOR_CATEGORIES: EstimatorCategory[] = [
     id: 'est-banner',
     name: 'Large Format Printing',
     slug: 'banner',
-    unit_label: 'Square Feet / Units',
+    unit_label: 'Square Feet',
     base_rate: 350,
-    min_qty: 24,
+    min_qty: 1,
     sort_order: 1,
     is_active: true,
     options: [
