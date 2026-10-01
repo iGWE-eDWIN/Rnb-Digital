@@ -108,13 +108,6 @@ export default function Footer({ settings: propSettings, navigationLinks: propNa
               {link.label}
             </a>
           ))}
-          <Link
-            href="/admin"
-            className="text-xs sm:text-sm text-secondary-container font-semibold hover:underline flex items-center gap-1 mt-1"
-          >
-            <span>Admin CMS Login</span>
-            <span className="material-symbols-outlined text-xs">lock</span>
-          </Link>
         </div>
 
         {/* Newsletter & Direct Order */}
