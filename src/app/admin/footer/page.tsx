@@ -55,6 +55,9 @@ export default function AdminFooterPage() {
     setSaving(true);
     try {
       const updated = await updateSiteSettings({
+        contact_address: settings.contact_address,
+        contact_phone: settings.contact_phone,
+        contact_email: settings.contact_email,
         footer_description: settings.footer_description,
         footer_copyright: settings.footer_copyright,
       });
@@ -150,6 +153,53 @@ export default function AdminFooterPage() {
           </div>
 
           <div className="space-y-4 text-xs">
+            <div>
+              <label className="block font-bold uppercase tracking-wider text-primary-container mb-1.5">
+                Business Address
+              </label>
+              <textarea
+                rows={2}
+                required
+                value={settings.contact_address}
+                onChange={(e) =>
+                  setSettings({ ...settings, contact_address: e.target.value })
+                }
+                className="w-full bg-surface-container-low border border-outline-variant/40 rounded-xl px-3.5 py-2.5 font-semibold text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none leading-relaxed"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-bold uppercase tracking-wider text-primary-container mb-1.5">
+                  Phone Number
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={settings.contact_phone}
+                  onChange={(e) =>
+                    setSettings({ ...settings, contact_phone: e.target.value })
+                  }
+                  className="w-full bg-surface-container-low border border-outline-variant/40 rounded-xl px-3.5 py-2.5 font-semibold text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold uppercase tracking-wider text-primary-container mb-1.5">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={settings.contact_email}
+                  onChange={(e) =>
+                    setSettings({ ...settings, contact_email: e.target.value })
+                  }
+                  className="w-full bg-surface-container-low border border-outline-variant/40 rounded-xl px-3.5 py-2.5 font-semibold text-on-surface focus:ring-2 focus:ring-secondary-container focus:outline-none"
+                />
+              </div>
+            </div>
+
             <div>
               <label className="block font-bold uppercase tracking-wider text-primary-container mb-1.5">
                 Footer Brand Summary / Description
