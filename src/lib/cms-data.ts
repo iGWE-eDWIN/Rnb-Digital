@@ -997,17 +997,50 @@ export async function getInquiries(): Promise<QuoteInquiry[]> {
 export async function submitInquiry(inquiry: Omit<QuoteInquiry, 'id' | 'created_at' | 'status'>): Promise<QuoteInquiry> {
   const newItem: QuoteInquiry = {
     ...inquiry,
-    id: `inq-${Date.now()}`,
+    id: crypto.randomUUID(),
     status: 'pending',
     created_at: new Date().toISOString(),
   };
 
   const supabase = getSupabaseClient();
+  try {
+    const response = await fetch('/api/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: newItem.id,
+        name: inquiry.name,
+        email: inquiry.email,
+        phone: inquiry.phone,
+        service: inquiry.service,
+        quantity: inquiry.quantity,
+        estimatedTotal: inquiry.estimated_total,
+        message: inquiry.message,
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      if (!result.emailSent) {
+        console.warn('Inquiry was received, but its notification email was not sent.');
+      }
+      if (result.inquiry) return result.inquiry as QuoteInquiry;
+      if (!supabase || !isSupabaseConfigured()) {
+        const current = await getInquiries();
+        setLocalItem('inquiries', [newItem, ...current]);
+        return newItem;
+      }
+    }
+  } catch (e) {
+    console.warn('Quote API request failed; saving inquiry through the available fallback:', e);
+  }
+
   if (supabase && isSupabaseConfigured()) {
     try {
       const { data, error } = await supabase
         .from('quote_inquiries')
-        .insert([{
+        .upsert({
+          id: newItem.id,
           name: inquiry.name,
           email: inquiry.email,
           phone: inquiry.phone,
@@ -1015,7 +1048,8 @@ export async function submitInquiry(inquiry: Omit<QuoteInquiry, 'id' | 'created_
           quantity: inquiry.quantity,
           estimated_total: inquiry.estimated_total,
           message: inquiry.message,
-        }])
+          status: 'pending',
+        })
         .select()
         .single();
       if (!error && data) return data as QuoteInquiry;

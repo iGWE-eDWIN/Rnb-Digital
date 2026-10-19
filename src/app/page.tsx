@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSlideshow from '@/components/HeroSlideshow';
+import ClientLogoMarquee from '@/components/ClientLogoMarquee';
 import ServicesGrid from '@/components/ServicesGrid';
 import QuoteCalculator from '@/components/QuoteCalculator';
 import PortfolioGallery from '@/components/PortfolioGallery';
@@ -107,6 +108,8 @@ export default function Home() {
           <div className="absolute -bottom-28 -right-28 w-96 h-96 bg-primary-fixed/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute top-12 -left-16 w-72 h-72 bg-secondary-container/15 rounded-full blur-3xl pointer-events-none" />
         </section>
+
+        <ClientLogoMarquee />
 
         {/* ===================== SERVICES SECTION ===================== */}
         <ServicesGrid onSelectServiceForQuote={(title) => setActiveQuoteService(title)} />

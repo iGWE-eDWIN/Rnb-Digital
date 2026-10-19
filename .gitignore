@@ -2,3 +2,9 @@ node_modules
 stitch_rnb_digital_green_redesign
 .env.local
 .env.example
+.next/
+node_modules/
+out/
+dist/
+*.tsbuildinfo
+.env*.local

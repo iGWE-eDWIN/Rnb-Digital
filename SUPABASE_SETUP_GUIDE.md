@@ -53,6 +53,15 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...your-anon-key-here...
 ```
 
+To email new quote inquiries to `rnbdigitals@gmail.com`, configure Resend with a verified sender domain and add these server-only variables to `.env.local` and your deployment environment:
+
+```env
+RESEND_API_KEY=re_your_api_key
+RESEND_FROM_EMAIL="RnB Digitals <inquiries@your-verified-domain.com>"
+```
+
+Do not prefix these variables with `NEXT_PUBLIC_`. Inquiry emails use the visitor's email as the reply-to address when one is provided.
+
 ---
 
 ## 5. Log in to the Admin Dashboard
